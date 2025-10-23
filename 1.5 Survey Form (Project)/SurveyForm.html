@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Photography Inquiry Form</title>
+        <link rel="stylesheet" href="SurveyForm.css">
+    </head>
+    <body class="debug">
+        <h1 id="title">Photography Inquiry Form</h1>
+        <p id="description">Please fill out this form to inquire about a photography session or request a quote.</p>
+        <hr class="hr1">
+        <form id="survey-form" method="get">
+            <fieldset>
+                <legend class="pinfo">Personal Information</legend>
+                <label for="name" id="name-label">First Name: <input class="align fieldset1" type="text" id="name" name="first-name" placeholder=" type here..." required></label>
+                <label for="last-name">Last Name: <input class="align fieldset1" type="text" id="last-name" name="last-name" placeholder=" type here..." required></label>
+                <label for="e-mail" id="email-label">E-mail: <input class="align fieldset1" type="email" id="email" name="e-mail" placeholder=" type here..." required></label>
+                <label for="number" id="number-label">Phone Number: <input class="align fieldset1" type="number" id="number" name="phone-number" min="9" max="14" pattern="[0-9]{9,14}" placeholder=" type here..."required></label>
+            </fieldset>
+            <br>
+            <hr class="hr2">
+            <fieldset>
+                <legend class="sdetails">Session Details</legend>
+                <label class="budget" for="budget">Estimated Budget: <input class="number" type="number" min="50" max="20000" id="budget" name="budget" required></label>
+                <label class="dropdown2" for="dropdown">Service required:
+                    <select name="service" id="dropdown">
+                        <option value="">Select one option</option>
+                        <option value="1">Wedding</option>
+                        <option value="2">Portrait</option>
+                        <option value="3">Event</option>
+                        <option value="4">Real Estate</option>
+                        <option value="5">Other</option>
+                    </select>
+                </label>
+                <hr class="hr3">
+                <legend class="pcontact">Preferred Contact Method</legend>
+                <label for="email"><input type="radio" class="radio" id="e-mail" name="contact-method" value="email" checked>Email </label>
+                <label for="phone"><input type="radio" class="radio" id="phone" name="contact-method" value="phone">Phone </label>
+                <hr class="hr4">
+                <legend class="exservices">Extra Services</legend>
+                <label for="digital-gallery"><input type="checkbox" id="digital-gallery" name="extra-services" value="digital-gallery">Digital Gallery</label>
+                <label for="prints"><input type="checkbox" id="prints" name="extra-services" value="prints">Prints</label>
+                <label for="album"><input type="checkbox" id="album" name="extra-services" value="album">Album</label>
+                <label for="other"><input type="checkbox" id="other" name="extra-services" value="other">Other</label>
+            </fieldset>
+            <fieldset>
+                <hr class="hr5">
+                <label class="textlabel">Tell me other details about your project:
+                    <textarea id="details" name="details" rows="3" cols="30" placeholder="type your text here..."></textarea>
+                </label>
+            </fieldset>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </body>
+</html>
