@@ -17,8 +17,13 @@ body {
     font-family: 'Open Sans', Arial, sans-serif;
 }
 
-h1 {
+h1, h2 {
   font-family: 'Playfair Display', Georgia, serif;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
 }
 
 .lesstopmargin {
@@ -267,4 +272,69 @@ section.songs-section {
 
 #footerlink:hover{
     color: white;
+}
+
+
+
+
+@media (max-width: 700px) {
+
+
+  header {
+    top: 18%;
+  }
+
+  .hero-text {
+    top: 5%;
+    text-align: center;
+  }
+
+  nav > ul {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5em;
+    padding-right: 0;
+  }
+
+  hr {
+    max-width: 275px;
+  }
+
+  .biodiv {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .galdiv {
+    width: 90vw;
+    gap: 32px;
+  }
+
+  .songdiv {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .songdiv img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  section:not(.hero-section) {
+    margin: 64px auto;
+    padding: 0 5vw;
+  }
+
+  .footer-p {
+    font-size: 0.9rem;
+  }
+
 }
