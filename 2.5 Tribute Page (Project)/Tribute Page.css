@@ -90,8 +90,6 @@ nav > ul > li > a {
     text-decoration: none;
 }
 
-
-
 .hero-section {
     position: relative;
     height: 100vh;
@@ -106,7 +104,6 @@ nav > ul > li > a {
     height: 100vh;
     object-fit: cover;
     object-position: center top;
-    display: block;
 }
 
 .hero-text {
@@ -128,7 +125,7 @@ nav > ul > li > a {
     color: rgb(181, 34, 63);
 }
 
-.bio-section h1 {
+.bio-section h2 {
     margin-bottom: 64px;
     text-align: center;
 }
@@ -151,7 +148,7 @@ nav > ul > li > a {
     text-align: center;
 }
 
-.gallery-section h1 {
+.gallery-section h2 {
     margin-bottom: 64px;
     text-align: center;
 }
@@ -189,7 +186,7 @@ section.songs-section {
     padding: 0;
 }
 
-.songs-section h1 {
+.songs-section h2 {
     text-align: center;
     margin-bottom: 64px;
 }
@@ -264,36 +261,40 @@ section.songs-section {
     
 }
 
-#footerlink {
+#footerlink, #tribute-link{
     color: #b5223f;
     text-decoration: none;
     transition: color 0.5s ease;
 }
 
-#footerlink:hover{
+#footerlink:hover, #tribute-link:hover{
     color: white;
 }
 
 
 
 
-@media (max-width: 700px) {
+        /*Mobile Responsiveness*/
 
+@media (max-width: 700px) {
 
   header {
     top: 18%;
   }
 
   .hero-text {
-    top: 5%;
-    text-align: center;
+    top:3%;
+    right: 7%;
   }
 
   nav > ul {
     flex-direction: column;
-    justify-content: center;
     gap: 1.5em;
     padding-right: 0;
+  }
+
+  nav > ul > li {
+    margin-left: 40%;
   }
 
   hr {
@@ -306,7 +307,7 @@ section.songs-section {
   }
 
   .galdiv {
-    width: 90vw;
+    width: 160vw;
     gap: 32px;
   }
 
@@ -318,6 +319,11 @@ section.songs-section {
   .songdiv img {
     max-width: 90%;
     height: auto;
+  }
+
+  .hero-section > img {
+    object-fit: cover;
+    object-position: 37.5%;
   }
 
   .hero-text h1 {
