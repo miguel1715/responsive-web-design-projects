@@ -1,4 +1,4 @@
-* {
+* {         /*CONTROLS WHETHER PADDING/BORDER COUNT IN THE WIDTH*/
     box-sizing: border-box;
 }
 
@@ -23,9 +23,9 @@ body {          /*FONT STYLE OF THE BODY*/
 .nav-title {        /*STRUCTURE OF THE NAV TITLE*/
     text-align: center;
     margin-bottom: 1rem;
-    text-decoration: underline;
     padding-top: 0.2rem;
     padding-bottom: 1rem;
+    color: dodgerblue;
 }
 
 #navbar > a {       /*STRUCTURE OF THE LINKS IN THE NAVBAR*/
@@ -61,7 +61,7 @@ body {          /*FONT STYLE OF THE BODY*/
 }
 
 section {       /*SECTION STRUCTURE*/
-    padding: 0 3rem;
+    padding: 1.5rem 3rem;
 }
 
 section > header {      /*HEADER OF EACH SECTION POSITION/STYLE*/
@@ -82,12 +82,12 @@ hr {        /*SEPARATION LINES STRUCTURE AND STYLE*/
     margin: 2rem auto 3rem auto;
 }
 
-li {
+li {            /*MARGIN FOR THE LIST ELEMENT*/
     margin: 2rem 0;
 }
 
 ul:last-of-type {   /*SEPARATION BETWEEN THE LAST ITEM ON LIST AND NEXT HEADER*/
-    margin-bottom: 128px;
+    margin-bottom: 64px;
 }
 
 code {          /*STYLE AND STRUCTURE OF THE CODE SECTIONS*/
@@ -95,11 +95,4 @@ code {          /*STYLE AND STRUCTURE OF THE CODE SECTIONS*/
     padding: 1rem;
     background-color: #e2e2e2;
     border: 1px solid dodgerblue;
-}
-
-#boxmodel {     /*IMAGE OF THE BOXMODEL*/
-    position: absolute;
-    top: 1390px;
-    right: 80px;
-    max-width: 490px;
 }

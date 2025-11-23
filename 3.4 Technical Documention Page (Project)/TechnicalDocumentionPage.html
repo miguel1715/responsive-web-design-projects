@@ -62,41 +62,172 @@
                 <li><strong>Margin</strong> — space outside the border between elements</li>
                 <code>.card { margin: 1.5rem; }</code>
             </ul>
-            <img id="boxmodel" src="images/css_box_model.jpeg">
         </section>
 
         <section id="Positioning" class="main-section">
             <header>Positioning</header>
+            <hr>
+            <p>CSS positioning controls how elements are placed on the page. It allows you to move elements, stack them, or remove them from the normal document flow.</p>
+            <p>Understanding positioning is essential for layouts, navigation bars, modals, tooltips, and advanced UI patterns.</p>
+            <ul >
+                <li><strong>Static</strong> — the default positioning; elements follow normal flow</li>
+                <code>div { position: static; }</code>
+                <li><strong>Relative</strong> — element stays in normal flow but can be shifted using top/left/right/bottom</li>
+                <code>.box { position: relative; top: 10px; left: 20px; }</code>
+                <li><strong>Absolute</strong> — removed from normal flow and positioned relative to the nearest non-static ancestor</li>
+                <code>.child { position: absolute; top: 0; right: 0; }</code>
+                <li><strong>Fixed</strong> — positioned relative to the viewport; does not move when scrolling</li>
+                <code>nav { position: fixed; top: 0; left: 0; }</code>
+                <li><strong>Sticky</strong> — scrolls normally until it reaches a threshold, then sticks in place</li>
+                <code>header { position: sticky; top: 0; }</code>
+                <li><strong>z-index</strong> — controls stacking order (which elements appear on top)</li>
+                <code>.modal { z-index: 10; position: absolute; }</code>
+            </ul>
         </section>
 
         <section id="Flexbox" class="main-section">
             <header>Flexbox</header>
+            <hr>
+            <p>Flexbox is a one-dimensional layout system that makes it easy to align, distribute, and space elements inside a container. It is especially useful for responsive layouts.</p>
+            <p>Flexbox works along two axes: the <strong>main axis</strong> and the <strong>cross axis</strong>. You control these with direction, alignment, and distribution properties.</p>
+            <ul>
+                <li><strong>Display: flex</strong> — turns an element into a flex container</li>
+                <code>.container { display: flex; }</code>
+                <li><strong>Flex-direction</strong> — sets the direction of items (row, column)</li>
+                <code>.container { flex-direction: row; }</code>
+                <li><strong>Justify-content</strong> — aligns items along the main axis</li>
+                <code>.container { justify-content: center; }</code>
+                <li><strong>Align-items</strong> — aligns items along the cross axis</li>
+                <code>.container { align-items: flex-start; }</code>
+                <li><strong>Flex-wrap</strong> — allows items to wrap onto multiple lines</li>
+                <code>.container { flex-wrap: wrap; }</code>
+                <li><strong>Gap</strong> — controls spacing between flex items</li>
+                <code>.container { gap: 1rem; }</code>
+            </ul>
         </section>
 
         <section id="Typography" class="main-section">
             <header>Typography</header>
+            <hr>
+            <p>Typography in CSS controls how text appears on the page—its size, weight, spacing, and readability. Good typography improves accessibility and the overall user experience.</p>
+            <p>CSS gives you fine control over fonts, line spacing, letter spacing, and how text flows within the layout.</p>
+            <ul>
+                <li><strong>Font-family</strong> — sets the typeface used for text</li>
+                <code>body { font-family: "Inter", sans-serif; }</code>
+                <li><strong>Font-size</strong> — controls how large the text is</li>
+                <code>h1 { font-size: 2.5rem; }</code>
+                <li><strong>Font-weight</strong> — adjusts boldness</li>
+                <code>strong { font-weight: 700; }</code>
+                <li><strong>Line-height</strong> — sets spacing between lines of text</li>
+                <code>p { line-height: 1.6; }</code>
+                <li><strong>Letter-spacing</strong> — adjusts spacing between characters</li>
+                <code>.title { letter-spacing: 0.05rem; }</code>
+                <li><strong>Text-align</strong> — aligns text (left, center, right)</li>
+                <code>.center { text-align: center; }</code>
+            </ul>
         </section>
 
         <section id="Colors_and_Backgrounds" class="main-section">
             <header>Colors & Backgrounds</header>
+            <hr>
+            <p>CSS provides multiple ways to control color and backgrounds, allowing you to set mood, hierarchy, and visual structure in your UI. You can use named colors, HEX, RGB, HSL, gradients, and images.</p>
+            <p>Background styles can apply to any element and are essential for layout, emphasis, and branding.</p>
+            <ul>
+                <li><strong>Color</strong> — sets the text color</li>
+                <code>p { color: #333; }</code>
+                <li><strong>Background-color</strong> — sets the background color of an element</li>
+                <code>div { background-color: lightblue; }</code>
+                <li><strong>Background-image</strong> — adds images or gradients</li>
+                <code>header { background-image: url("banner.webp"); }</code>
+                <li><strong>Background-size</strong> — defines how images scale</li>
+                <code>div { background-size: cover; }</code>
+                <li><strong>Background-repeat</strong> — controls if images repeat</li>
+                <code>section { background-repeat: no-repeat; }</code>
+                <li><strong>Background-position</strong> — positions background images</li>
+                <code>div { background-position: center; }</code>
+            </ul>
+
         </section>
 
         <section id="Grid" class="main-section">
             <header>Grid</header>
+            <hr>
+            <p>CSS Grid is a powerful layout system that allows you to create two-dimensional layouts—both rows and columns. It is ideal for building full-page layouts, dashboards, galleries, and complex structures.</p>
+            <ul>
+                <li><strong>Display: grid</strong> — enables grid layout</li>
+                <code>.container { display: grid; }</code>
+                <li><strong>Grid-template-columns</strong> — defines column structure</li>
+                <code>.container { grid-template-columns: 1fr 1fr 1fr; }</code>
+                <li><strong>Grid-template-rows</strong> — defines row structure</li>
+                <code>.container { grid-template-rows: auto 200px; }</code>
+                <li><strong>Gap</strong> — sets spacing between grid items</li>
+                <code>.container { gap: 1rem; }</code>
+                <li><strong>Grid-column / grid-row</strong> — controls how elements span</li>
+                <code>.item { grid-column: span 2; }</code>
+                <li><strong>Place-items</strong> — aligns items in both directions</li>
+                <code>.container { place-items: center; }</code>
+            </ul>
         </section>
 
         <section id="Units_and_Sizing" class="main-section">
             <header>Units and Sizing</header>
+            <hr>
+            <p>CSS provides various units to size elements flexibly. Choosing the right unit helps create responsive, scalable designs.</p>
+            <ul>
+                <li><strong>px</strong> — fixed pixel values</li>
+                <code>div { width: 300px; }</code>
+                <li><strong>%</strong> — relative to the parent element</li>
+                <code>img { width: 50%; }</code>
+                <li><strong>em</strong> — relative to the element’s font size</li>
+                <code>p { margin-left: 2em; }</code>
+                <li><strong>rem</strong> — relative to the root font size</li>
+                <code>h1 { font-size: 2rem; }</code>
+                <li><strong>vw / vh</strong> — percentage of viewport width/height</li>
+                <code>.hero { height: 100vh; }</code>
+                <li><strong>min(), max(), clamp()</strong> — powerful fluid sizing functions</li>
+                <code>p { font-size: clamp(1rem, 2vw, 2rem); }</code>
+            </ul>
         </section>
 
         <section id="Transitions_and_Transforms" class="main-section">
             <header>Transitions & Transforms</header>
+            <hr>
+            <p>Transitions allow smooth changes between property values, while transforms let you rotate, scale, move, or skew elements.</p>
+            <ul>
+                <li><strong>Transition</strong> — animates property changes</li>
+                <code>button { transition: background 0.3s ease; }</code>
+                <li><strong>Transform: translate()</strong> — moves an element</li>
+                <code>.box { transform: translateX(20px); }</code>
+                <li><strong>Transform: rotate()</strong> — rotates an element</li>
+                <code>.icon { transform: rotate(45deg); }</code>
+                <li><strong>Transform: scale()</strong> — resizes an element</li>
+                <code>img:hover { transform: scale(1.1); }</code>
+                <li><strong>Transform: skew()</strong> — skews an element</li>
+                <code>.title { transform: skewX(10deg); }</code>
+                <li><strong>Transition-property / duration / timing-function</strong> — fine-tune animations</li>
+                <code>.link { transition: color 0.2s linear; }</code>
+            </ul>
         </section>
 
         <section id="Responsive_Design" class="main-section">
             <header>Responsive Design</header>
+             <hr>
+            <p>Responsive design ensures your layout adapts to different screen sizes, from desktops to mobile devices. CSS provides multiple tools to make designs flexible and accessible.</p>
+            <ul>
+                <li><strong>media queries</strong> — apply CSS only at specific breakpoints</li>
+                <code>@media (max-width: 600px) { body { font-size: 14px; } }</code>
+                <li><strong>flexbox</strong> — naturally responsive layout tool</li>
+                <code>.container { display: flex; flex-wrap: wrap; }</code>
+                <li><strong>grid</strong> — powerful for adaptive layouts</li>
+                <code>.grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }</code>
+                <li><strong>fluid units</strong> — % , vw , vh , rem for scalable sizing</li>
+                <code>img { width: 100%; }</code>
+                <li><strong>clamp()</strong> — fluid typography with min/max control</li>
+                <code>h1 { font-size: clamp(2rem, 5vw, 4rem); }</code>
+                <li><strong>mobile-first approach</strong> — start small, scale up</li>
+                <code>@media (min-width: 768px) { ... }</code>
+            </ul>
         </section>
-
     </main>
 </body>
 </html>
