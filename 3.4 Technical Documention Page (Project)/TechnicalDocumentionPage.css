@@ -91,8 +91,105 @@ ul:last-of-type {   /*SEPARATION BETWEEN THE LAST ITEM ON LIST AND NEXT HEADER*/
 }
 
 code {          /*STYLE AND STRUCTURE OF THE CODE SECTIONS*/
+    display: block;         /*CODE SECTIONS WERE BREAKING AT AROUND 800PX WIDTH SCREEN*/
+    max-width: 75%;
     margin: 1rem 1rem;
     padding: 1rem;
     background-color: #e2e2e2;
     border: 1px solid dodgerblue;
+}
+
+#footer {           /*DESIGN AND STRUCTURE OF THE FOOTER*/
+    text-align: center;
+    margin-left: 225px;
+    border-top: 1px solid dodgerblue;
+}
+
+.gitlink {              /*REMOVES THE BLUE LINK COLOR*/
+    color: black;
+}
+
+.gitlink:hover {            /*HOVER BLUE COLOR ON THE LINK*/
+    color: dodgerblue;  
+}
+
+#div_button {               /*MAKING THE DIV PARENT OF THE BUTTON A FLEX*/
+    display: flex;
+    justify-content: end;
+    margin: 2rem 2rem auto auto;
+}
+
+#button {                       /*POSITION AND STYLE OF THE BUTTON/LINK*/
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border: 1px solid dodgerblue;
+    border-radius: 6px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+#button:hover {                     /*STYLE HOVER EFFECT OF THE BUTTON*/
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+}
+
+
+        /*RESPONSIVE DESIGN*/
+
+@media (max-width: 750px) {
+
+    #navbar {                       /*MAKES THE NAVBAR BECOME A TOP NAVBAR*/
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding-bottom: 0;      /*FIXES A WEIRD SPACE ON THE BOTTOM BORDER OF THE NAVBAR*/
+        margin-bottom: 64px;
+    }
+
+    #navbar > a:hover:last-of-type {            /*FIXES A DOUBLE LINE ON THE LAST LINK*/
+        border-bottom: 0px;
+    }
+
+    #main-doc {                 /*STRUCTURES THE ENTIRE BODY TO THE CENTER*/
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    section {                   /*LESS PADDING FOR SMALLER SCREENS*/
+        padding: 1rem;
+    }
+
+    section > header {          /*SMALLER FONT HEADER FOR SMALLER SCREENS*/
+        font-size: 1.5rem;
+    }
+
+    ul {                        /*CENTERS THE LIST WITH THE REST OF THE ELEMENTS*/
+        padding: 0;
+    }
+
+    code {                      /*MAKES THE CODE BARS CONSISTENT ON SMALL SCREENS*/
+        width: 75%;
+        max-width: 100%;
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #footer {           /*ALIGNS FOOTER WITH THE BODY*/
+    margin-left: 0;
+    }
+
+    #div_button {           /*CENTER BUTTON ON SMALLER SCREENS*/
+        justify-content: center;
+        margin: 2rem auto;
+    }
+    
+}
+
+@media (prefers-reduced-motion: no-preference){         /*SMOOTH SCROLLING*/
+    * {
+        scroll-behavior: smooth;
+    }
 }
