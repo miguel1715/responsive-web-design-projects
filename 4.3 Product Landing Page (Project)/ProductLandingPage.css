@@ -1,15 +1,120 @@
+/*debug*/
+
+.debug * {
+    outline: 1px solid rgb(43, 0, 255);
+ }
+
+
 
 /*BASIC STRUCTURE*/
 
-*, *::before, *::after {
+*, *::before, *::after {        /*CSS Reset + Box Model Fix*/
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+body {      /*MAIN STRUCTURE/STYLE OF THE PAGE*/
     font-family: system-ui, sans-serif;
     background: #111;
     color: #eee;
     line-height: 1.6;
+}
+
+#nav-bar {      /*NAV-BAR STRUCTURE AND STYLE*/
+
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: transparent;
+}
+
+#nav-bar > ul {     /*NAV-ITEMS ALIGNMENT*/
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5em;
+    list-style: none;
+    margin: 2rem 3rem 0.5rem 0rem;
+}
+
+#nav-bar > ul > li {    /*PADDING INSIDE THE LINKS BUTTONS*/
+    padding: 4px;
+}
+
+img {           /*MAIN STRUCTURE OF THE IMAGES*/
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.hero {         /*HERO IMAGE POSITIONING AND SIZE*/
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {     /*HERO PHRASES/SLOGAN STYLE AND POSITION*/
+    position: absolute;
+    color: white;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+}
+
+.hero-content h1 {     /*HERO PHRASES/SLOGAN STYLE AND POSITION*/
+    font-size: 4rem;
+    margin-bottom: 45%;
+}
+
+.hero-content p {   /*HERO PHRASES/SLOGAN STYLE AND POSITION*/
+    font-size: 1.8rem;
+}
+
+
+.arrow {            /*HERO ARROW POSITION BELOW MAIN "p"*/
+    display: block;
+    font-size: 1.3rem;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.products-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 1rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.product-card img {
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.product-card > p {
+    text-align: center;
+    margin: 1rem;
 }
