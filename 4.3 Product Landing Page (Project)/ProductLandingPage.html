@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ProductLandingPage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Lumus - Velas Artesanais</title>
 </head>
 <body class="">
         <!--NAVIGATION BAR-->
     <header id="header">
         <nav id="nav-bar">
-            <img id="header-img" src=""> <!--THIS IMG IS TO HIDE, ONLY TO PASS REQUIREMENTS, DELETE AFTER FCC PASS-->
-            <h1></h1>
             <ul>
-                <li class="nav-link">Produtos</li>
-                <li class="nav-link">Contacto</li>
-                <li class="nav-link">Sobre</li>
+                <li class="nav-link"><a href="#productsid" aria-label="">Produtos</a></li> <!-- CHANGE THE CLASS ON THESE 3 BACK TO THE li ELEMENT-->
+                <li class="nav-link"><a href="#formid" aria-label="">Contacto</a></li>
+                <li class="nav-link"><a href="#aboutid" aria-label="">Sobre</a></li>
             </ul>
         </nav>
     </header>
@@ -23,19 +22,18 @@
     <main>
         <!--HERO SECTION-->
         <section class="hero">
-            <img src="https://picsum.photos/1600/900" > <!--THIS I MAIN IMAGE OF THE FRONT PAGE-->
+            <img id="hero-img1" src="images/main_svg.svg" > 
             <div class="hero-content">
-                <h1>HANDMADE CANDLES</h1>  <!--MAIN PHRASE-->
-                <p>↓</p>   <!--"Scroll down to see products"-->
+                <p>↓</p> 
             </div>
         </section>
 
         <!--ABOUT SECTION-->
-        <section class="about-section">
+        <section class="about-section" id="aboutid">
             <h2>SOBRE NÓS</h2>
             <hr>
             <div class="about-div">
-                <img id="about-img" src="images/stock_candle.jpeg">
+                <img id="about-img" src="images/Stock_candle.jpg">
                 <p>Na Lumus cada vela nasce das mãos e do coração - criada com tempo, intenção e um toque de poesia.
                     Usamos apenas ingredientes naturais cuidadosamente escolhidos para que cada chama conte uma história de calma, aconchego e inspiração.
                     Acreditamos que acender uma vela é mais do que iluminar um espaço: é criar um momento, um refúgio,  uma pequena pausa para respirar e sentir.
@@ -44,62 +42,71 @@
         </section>
 
         <!--PRODUCT GRID SECTION-->
-        <section class="products-section">
-            <h2>PRODUTOS</h2> <!--MAYBE TURN THIS INTO H2-->
+        <section class="products-section" id="productsid">
+            <h2>PRODUTOS</h2>
             <hr>
             <div class="products-grid"> 
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Arvore Natal</p>   
+                    <img src="images/Fotos/Bola_Grande.JPEG">
+                    <p>BOLA GRANDE</p>
+                    <p>9.00€</p>   
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Boneco Natal</p>
+                    <img src="images/Fotos/Bola_Intermedia.JPEG">
+                    <p>BOLA INTERMÉDIA</p>
+                    <p>6.00€</p> 
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Bola de Natal</p>
+                    <img src="images/Fotos/Bola_Pequena.JPEG">
+                    <p>BOLA PEQUENA</p>
+                    <p>4.50€</p> 
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Bola de Natal</p>
+                    <img src="images/Fotos/Boneco_de_Neve_e_Rena.JPEG">
+                    <p>BONECO DE NEVE OU RENA</p>
+                    <p>4.00€ / 6.00€</p> 
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Bola de Natal</p>
+                    <img src="images/Fotos/Cilindrica_Rena.JPEG">
+                    <p>RENA - CILINDRICA</p>
+                    <p>9.00€</p> 
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Bola de Natal</p>
+                    <img src="images/Fotos/Cilindrica_arvore_Natal.JPEG">
+                    <p>ÁRVORE DE NATAL - CILINDRICA</p>
+                    <p>9.00€</p> 
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Bola de Natal</p>
+                    <img src="images/Fotos/Velas_do_Advento.JPEG">
+                    <p>VELAS DO ADVENTO</p>
+                    <p>34.20€</p>
+                    <p><a id="more-info" href="#insta-icon">( mais informações - DM )</a></p> 
                 </div>
                 <div class="product-card">
-                    <img src="https://picsum.photos/400/500">
-                    <p>Bola de Natal</p>
+                    <img src="images/Fotos/Arvores_grande_e_pequena.JPEG">
+                    <p>ÁRVORE GRANDE/PEQUENA</p>
+                    <p>9.00€ / 4.50€</p> 
                 </div>
             </div>    
         </section>
 
         <!--FORM SECTION-->
-        <section class="form-section">
-            <h2>FAZ JÁ A TUA ENCOMENDA</h2>
+        <section class="form-section"  id="formid">
+            <h2>FAZ JÁ A TUA ENCOMENDA!</h2>
             <hr>
             <div class="form-div">   
-                <form class="form-element">
+                <form class="form-element" id="formulario" action="">
                     <label class="form-label" for="name" id="name-label">Nome: </label> 
-                        <input class="label-input" type="text" id="name" name="Nome" placeholder=" escreve aqui ..." required>
+                        <input class="label-input" type="text" id="name" name="Nome" placeholder=" Escreve aqui ..." required>
                     
                     <label class="form-label" for="e-mail" id="email-label">E-mail: </label> 
-                        <input class="label-input" type="email" id="email" name="e-mail" placeholder=" escreve aqui ..." required>
+                        <input class="label-input" type="email" id="email" name="email" placeholder=" Escreve aqui ..." required>
                     
                     <label class="form-label" for="number" id="number-label">Telemóvel: </label> 
-                        <input class="label-input" type="tel" id="number" name="numero-telemovel" pattern="[0-9]{9,14}" maxlength="13" inputmode="numeric" placeholder=" escreve aqui ..." required>
+                        <input class="label-input" type="tel" id="number" name="numero-telemovel" pattern="[0-9]{9,14}" maxlength="13" inputmode="numeric" placeholder=" Escreve aqui ..." required>
                     
                     <label class="form-label">Detalhes da encomenda: </label> 
-                        <textarea id="details" name="detalhes" rows="5" cols="50" placeholder=" detalhes da encomenda..." required></textarea>
+                        <textarea id="details" name="detalhes" rows="5" cols="50" placeholder=" Detalhes..." required></textarea>
                     
                     <input type="submit" value="ENCOMENDAR" id="submit">
                 </form>
