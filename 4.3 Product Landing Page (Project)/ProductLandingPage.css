@@ -89,7 +89,9 @@ img {           /*MAIN STRUCTURE OF THE IMAGES*/
 .hero {         /*HERO IMAGE POSITIONING AND SIZE*/
    position: relative;
     width: 100%;
-    height: 100vh;        
+    height: 100vh;    
+    height: 100svh;  
+    min-height: 100vh;    
     overflow: hidden;    
     background: #292727;
 }
@@ -124,7 +126,8 @@ h1 {            /*MAIN TITLE FRONT PAGE*/
 
 hr {
     margin:auto auto 5em auto;
-    width: 600px;
+    width: 90%;
+    max-width: 600px;
     height: 3px;
     background-color: #daa520;
     border: none;
@@ -164,11 +167,12 @@ h2 {            /*SECTION TITLES*/
 
 .about-div p {
     width: 60%;
-    margin-left: 2rem;
+    max-width: 480px;
+    margin: 0 auto;
     padding: auto 10rem;
     text-align: center;
     font-size: 1.2rem;
-    line-height: 1.8;
+    line-height: 1.6;
 }
 
 .products-section {         /*PRODUCT SECTION SPACING*/
@@ -246,7 +250,7 @@ h2 {            /*SECTION TITLES*/
     color: #292727;
     border-radius: 20px;
     border: none;
-    outline: 1px solid #292727;
+    outline: 3px solid #292727;
 }
 
 #submit:hover {
@@ -254,7 +258,7 @@ h2 {            /*SECTION TITLES*/
     color: #f9f5f2;              
     outline: 3px solid #daa520;  
     cursor: pointer;             
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     text-decoration: underline;   
 }
 
@@ -284,16 +288,15 @@ h2 {            /*SECTION TITLES*/
     text-decoration: none;
     color: #f9f5f2;
     border-radius: 20px;
-    border: none;
-    outline: 1px solid #f9f5f2;
+    border: 3px solid #f9f5f2;
+    transition: all 0.2s ease-out;
 }
 
 .insta-link:hover {
     background-color: #f9f5f2; 
     color: #292727;              
-    outline: 2px solid #daa520;  
-    cursor: pointer;             
-    transition: all 0.5s ease; 
+    cursor: pointer;
+    border: 3px solid #daa520;
 }
 
 #insta-icon {
@@ -303,6 +306,46 @@ h2 {            /*SECTION TITLES*/
     background: none;   
 }
 
+/*THANK YOU PAGE*/
+
+.thank-you-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0%, -10%);
+}
+
+.thank-you-page h1, .thank-you-page p {
+    margin: 1rem auto 2rem;
+    max-width: 1200px;
+    min-width: 300px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #292727;
+    color: #f9f5f2;
+    border-radius: 12px;
+    text-decoration: none;
+    outline: 2px solid #daa520;
+    font-weight: 600;
+}
+
+.back-button:hover {
+    background-color: #f9f5f2;
+    color: #292727;
+    outline: 2px solid #daa520;
+    box-shadow: 0 0 50px #daa520;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#thankyou-logo {
+    max-width: 600px;
+}
 
 /*EFFECTS*/
 
@@ -330,7 +373,8 @@ h2 {            /*SECTION TITLES*/
 @media (max-width: 768px) {   /*MOBILE PHONES*/
 
     .hero {
-        height: 45vh;
+        height: 90svh;   /* true iPhone height */
+        min-height: 100svh;
     }
 
     #hero-img1 {
@@ -354,6 +398,11 @@ h2 {            /*SECTION TITLES*/
 
     .nav-link > a {
         font-size: 1rem;
+    }
+
+    hr {
+        width: 80%;
+        max-width: 300px;
     }
 
     .about-div {
@@ -396,16 +445,23 @@ h2 {            /*SECTION TITLES*/
         padding: 2rem 1rem;
     }
 
+    .footer-div p {
+        max-width: 300px;
+        text-align: center;
+    }
+
     #insta-icon {
         width: 30px;
         height: 30px;
     }
+
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {        /*TABLETS*/
 
     .hero {
-        height: 45vh; 
+        height: 100svh;   /* true iPhone height */
+        min-height: 500px; 
     }
 
     #hero-img1 {

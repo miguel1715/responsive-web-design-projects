@@ -12,9 +12,9 @@
     <header id="header">
         <nav id="nav-bar">
             <ul>
-                <li class="nav-link"><a href="#productsid" aria-label="">Produtos</a></li> <!-- CHANGE THE CLASS ON THESE 3 BACK TO THE li ELEMENT-->
-                <li class="nav-link"><a href="#formid" aria-label="">Contacto</a></li>
                 <li class="nav-link"><a href="#aboutid" aria-label="">Sobre</a></li>
+                <li class="nav-link"><a href="#productsid" aria-label="">Produtos</a></li>
+                <li class="nav-link"><a href="#formid" aria-label="">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -95,7 +95,8 @@
             <h2>FAZ JÁ A TUA ENCOMENDA!</h2>
             <hr>
             <div class="form-div">   
-                <form class="form-element" id="formulario" action="">
+                <form class="form-element" id="formulario" name="Encomenda" method="post" data-netlify="true" action="thank-you.html">
+                    <input type="hidden" name="form-name" value="Encomenda"> <!--HIDDEN INPUT FOR NETLIFY-->
                     <label class="form-label" for="name" id="name-label">Nome: </label> 
                         <input class="label-input" type="text" id="name" name="Nome" placeholder=" Escreve aqui ..." required>
                     
