@@ -2,6 +2,11 @@
     outline: 1px solid yellow;
 }
 
+:root{
+    --theme-color1: rgba(0, 132, 255, 0.35);
+    --theme-color2: rgba(0, 200, 180, 0.28);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -19,32 +24,30 @@ body {
     background:
         radial-gradient(
             circle at top right,
-            rgba(0, 132, 255, 0.35),
+            var(--theme-color1),
             transparent 65%
         ),
         radial-gradient(
             circle at bottom left,
-            rgba(0, 200, 180, 0.28),
+            var(--theme-color2),
             transparent 65%
         ),
         black;
         display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 256px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem 16rem 200px;
 }
 
 #navbar {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     background: transparent;
-    padding: 2rem 16rem;
-    z-index: 1;
+    padding-bottom: 256px;
+    padding-top: 20px;
 }
 
 #navbar > ul {
@@ -65,12 +68,13 @@ body {
 
 
 .hero-content {
+    margin-top: auto;
+    margin-bottom: auto;
     max-width: 600px;
     font-size: 1.5rem;
     text-align: left;
     margin: 0;
     line-height: 1.2;
-    
 }
 
 .hero-content p {
@@ -80,4 +84,43 @@ body {
 .hero-content h1 {
     margin-top: 1rem;
     letter-spacing: normal;
+}
+
+#projects, #contact-section {
+    padding-top: 68px;   
+}
+
+hr{
+    border-color: rgba(0, 200, 180, 0.6);
+    margin: 0 auto 128px;
+    max-width: 600px;
+    
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 100px auto;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns:  minmax(2rem, 1fr)
+                            minmax(2rem, 1fr)   
+                            minmax(2rem, 1fr);
+    gap: 4rem;
+    place-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.project-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid var(--theme-color2);
+    border-radius: 20px;
+    padding: 1rem;
+    font-size: 1.3rem;
+    width: 100%;
+    min-height: 200px;
 }
