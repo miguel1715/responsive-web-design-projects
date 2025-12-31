@@ -5,6 +5,8 @@
 :root{
     --theme-color1: rgba(0, 132, 255, 0.35);
     --theme-color2: rgba(0, 200, 180, 0.28);
+    --theme-color3: rgba(0, 132, 255, 8);
+    --theme-color4: rgba(0, 200, 180, 8);
 }
 
 * {
@@ -35,7 +37,7 @@ body {
         black;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         padding: 2rem 16rem 200px;
 }
@@ -46,8 +48,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background: transparent;
-    padding-bottom: 256px;
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
 #navbar > ul {
@@ -65,15 +66,11 @@ body {
     font-size: 2.5rem;
 }
 
-
-
 .hero-content {
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-top: 11rem;
     max-width: 600px;
     font-size: 1.5rem;
     text-align: left;
-    margin: 0;
     line-height: 1.2;
 }
 
@@ -111,6 +108,7 @@ h2 {
     place-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    padding-bottom: 64px;
 }
 
 .project-tile {
@@ -123,4 +121,33 @@ h2 {
     font-size: 1.3rem;
     width: 100%;
     min-height: 200px;
+}
+
+.contact-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    min-height: 300px;
+    margin-bottom: 128px;
+}
+
+.contact-sec h3 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.contact-tile {
+    border: 5px solid var(--theme-color1);
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.footer-sec{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 128px;
+    font-size: 1.2rem;
 }
