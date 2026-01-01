@@ -4,58 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="">
-    <header>
-    </header>
     <main>
         <section id="welcome-section">
+            <!--NAVIGATION BAR-->
             <nav id="navbar">
-            <h1 class="maintitle">Miguel Cruz</h1>
+            <h1 class="maintitle">Miguel <span class="accent">Cruz</span></h1>
             <ul>
-                <li class="nav-link">Projects</li>
-                <li class="nav-link">Contact</li>
+                <li class="nav-link"><a href="#projects" aria-label="go to projects section">Projects</a></li>
+                <li class="nav-link"><a href="#contact-section" aria-label="go to contact section">Contact</a></li>
             </ul>
         </nav>
+        <!--HERO SECTION-->
             <div class="hero-content">
                 <p>Hello there, welcome to my website</p>
-                <h1>I'm Miguel Cruz<br>Studying to become a<br>Web Developer</h1>
+                <h1>I'm Miguel Cruz<br>Studying to become a<br><span class="accent">Web Developer</span></h1>
             </div>
         </section>
+        <!--PROJECTS SECTION-->
         <section id="projects" class="projects-sec">
             <h2>Projects</h2>
             <hr>
             <div class="project-grid">
-                <a class="project-tile">
-                    <h3>Project 1</h3>
+                <a class="project-tile" href="https://stately-youtiao-94e34d.netlify.app/" target="_blank">
+                    <h3>Survey Form</h3>
+                    <img src="images/project 1.png" alt="project 1 preview" loading="lazy">
                 </a>
-                <a class="project-tile">
-                    <h3>Project 2</h3>
+                <a class="project-tile" href="https://amazing-puppy-c79bdd.netlify.app/" target="_blank">
+                    <h3>Tribute Page</h3>
+                    <img src="images/project 2.png" alt="project 2 preview" loading="lazy">
                 </a>
-                <a class="project-tile">
-                    <h3>Project 3</h3>
+                <a class="project-tile" href="https://chimerical-trifle-5e8015.netlify.app/" target="_blank">
+                    <h3>Documentation Page</h3>
+                    <img src="images/project 3.png" alt="project 3 preview" loading="lazy">
                 </a>
-                <a class="project-tile">
-                    <h3>Project 4</h3>
-                </a>
-                <a class="project-tile">
-                    <h3>Project 5</h3>
+                <a class="project-tile" href="https://spectacular-haupia-9b891e.netlify.app/" target="_blank">
+                    <h3>Product Landing Page</h3>
+                    <img src="images/project 4.png" alt="project 4 preview" loading="lazy">
                 </a>
             </div>
-             <!-- repeat project-tile if needed -->
         </section>
+        <!--CONTACT SECTION-->
         <section id="contact-section" class="contact-sec">
             <hr>
-            <h3>Feel free to reach out!</h3>
+            <h3>Get in Touch!</h3>
             <div class="contact-div">
-                <a class="contact-tile">GitHub</a>
-                <a class="contact-tile">E-mail</a>
+                <a class="contact-tile" id="profile-link" href="https://github.com/miguel1715" target="_blank">GitHub</a>
+                <a class="contact-tile" href="mailto:miguelcruz.1715@gmail.com">E-mail</a>
             </div>
         </section>
     </main>
+    <!--FOOTER-->
     <footer class="footer-sec">
-        <p><i>Built and Design by Miguel Cruz</i></p>
+        <p><i>Built and Designed by Miguel Cruz</i></p>
         <p>© <i>2025</i></p>
     </footer>
 </body>
