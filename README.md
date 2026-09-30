@@ -1,36 +1,46 @@
 # Responsive Web Design — Projects (freeCodeCamp)
 
-Projects completed as part of freeCodeCamp’s **Legacy Responsive Web Design** certification.
+Projects completed as part of freeCodeCamp’s **Responsive Web Design** certification (HTML and CSS).
 
-## ✅ Completed Projects
+They're here as a record of where I started — this was
+the beginning of my road into programming, and it was intimidating at first,
+especially trying to understand how CSS actually works.
 
-- **Survey Form** — Live: [https://stately-youtiao-94e34d.netlify.app] — Code: `./survey-form/`
-- **Tribute Page** — Live: [https://amazing-puppy-c79bdd.netlify.app/] — Code: `./tribute-page/`
-- **Technical Documentation Page** — Live: [https://chimerical-trifle-5e8015.netlify.app/] — Code: `./technical-documentation-page/`
-- **Product Landing Page** — Live: [https://spectacular-haupia-9b891e.netlify.app/] — Code: `./product-landing-page/`
-- **Personal Portfolio** — Live: [https://keen-froyo-53d9c2.netlify.app/] — Code: `./personal-portfolio/`
+Some of these were simply what the course required to complete a section, even though they still made me struggle and taught me a lot. Two
+of them weren't. The **Product Landing Page** is a real page for a friend's business,
+built to showcase a product she was selling. The **Personal Portfolio** was the
+final project of the certification, and it's where I present my work —
+it'll keep getting updated as I learn more.
 
-## 🧰 Tech Used
+## Completed projects
 
-- HTML5  
-- CSS3  
-- Flexbox  
-- Media Queries  
-- VS Code  
-- Git & GitHub
+| Project | Live | Code | Notes |
+|---|---|---|---|
+| Survey Form | [demo](https://stately-youtiao-94e34d.netlify.app) | [source](./survey-form/) | |
+| Tribute Page | [demo](https://amazing-puppy-c79bdd.netlify.app/) | [source](./tribute-page/) | |
+| Technical Documentation Page | [demo](https://chimerical-trifle-5e8015.netlify.app/) | [source](./technical-documentation-page/) | |
+| Product Landing Page | [demo](https://spectacular-haupia-9b891e.netlify.app/) | [source](./product-landing-page/) | Built for a real client |
+| Personal Portfolio | [demo](https://miguel-cruz-dev.netlify.app/) | [source](./personal-portfolio/) | Final Certification project |
 
-## 🧠 What I Learned
+## Tech Used
 
-- How to structure semantic HTML using elements like `header`, `nav`, `section`, `main`, and `footer`
-- How to build responsive layouts using **Flexbox** and **CSS Grid**
-- How to design pages mobile-first and adapt them for tablet and desktop screens
-- How to use media queries to handle different screen sizes
-- How to manage spacing, alignment, and layout without relying on fixed heights
-- How to apply consistent typography, colors, and visual hierarchy
-- How to create accessible forms and navigation (labels, alt text, ARIA basics)
-- How to organize and structure a project from scratch
-- How to debug layout issues using browser dev tools
-- How to deploy static websites and manage live demo links
+HTML and CSS. No frameworks or libraries.
 
-## Notes
-Each folder contains the HTML/CSS source for the project.
+## What I Learned
+
+- Most layout problems turn out to be a property set on the wrong element —
+  `justify-content` and `align-items` belong on the parent, not the child
+- Setting a fixed `height` early is what makes a layout impossible to fix later;
+  width you set, height you let happen
+- `* { outline: 1px solid red; }` at the top of a stylesheet shows every box on
+  the page — most layout problems become obvious the moment you can see where
+  the boxes actually are
+- Padding compounds at every nesting level, so one or two boxes should carry
+  the spacing and the rest get zero
+- `letter-spacing` adds the space after the last letter too, which pushes
+  centred text off-centre
+- Doing layout and styling in the same pass is what gets you lost — get every
+  box in the right place with no colour at all, then decorate
+- Five minutes sketching the boxes on paper saves an hour of guessing in CSS
+- Nobody warns you that CSS can make you spend two hours
+  fighting over four pixels
