@@ -16,11 +16,11 @@ it'll keep getting updated as I learn more.
 
 | Project | Live | Code | Notes |
 |---|---|---|---|
-| Survey Form | [demo](https://stately-youtiao-94e34d.netlify.app) | [source](./survey-form/) | |
-| Tribute Page | [demo](https://amazing-puppy-c79bdd.netlify.app/) | [source](./tribute-page/) | |
-| Technical Documentation Page | [demo](https://chimerical-trifle-5e8015.netlify.app/) | [source](./technical-documentation-page/) | |
-| Product Landing Page | [demo](https://spectacular-haupia-9b891e.netlify.app/) | [source](./product-landing-page/) | Built for a real client |
-| Personal Portfolio | [demo](https://miguel-cruz-dev.netlify.app/) | [source](./personal-portfolio/) | Final Certification project |
+| Survey Form | [demo](https://photography-form.netlify.app) | [source](./survey-form/) | |
+| Tribute Page | [demo](https://tribute-page-tommy.netlify.app) | [source](./tribute-page/) | |
+| Technical Documentation Page | [demo](https://technical-css-doc-page.netlify.app) | [source](./technical-documentation-page/) | |
+| Product Landing Page | [demo](https://lumuscandles.netlify.app) | [source](./product-landing-page/) | Built for a real client |
+| Personal Portfolio | [demo](https://miguel-cruz-dev.netlify.app) | [source](./personal-portfolio/) | Final project of the certification |
 
 ## Tech Used
 
