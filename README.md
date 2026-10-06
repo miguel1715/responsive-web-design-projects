@@ -19,7 +19,7 @@ it'll keep getting updated as I learn more.
 | Survey Form | [demo](https://photography-form.netlify.app) | [source](./survey-form/) | |
 | Tribute Page | [demo](https://tribute-page-tommy.netlify.app) | [source](./tribute-page/) | |
 | Technical Documentation Page | [demo](https://technical-css-doc-page.netlify.app) | [source](./technical-documentation-page/) | |
-| Product Landing Page | [demo](https://lumuscandles.netlify.app) | [source](./product-landing-page/) | Built for a real client |
+| Product Landing Page | [demo](https://lumuscandles.netlify.app) | [source](./product-landing-page/) | Built for a friend's business |
 | Personal Portfolio | [demo](https://miguel-cruz-dev.netlify.app) | [source](./personal-portfolio/) | Final project of the certification |
 
 ## Tech Used
