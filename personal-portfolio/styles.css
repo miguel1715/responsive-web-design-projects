@@ -42,6 +42,9 @@ html {
 }
 
 
+/*  --------------------------------  */
+
+
 /*  MAIN PAGE STYLING  */
 
 body {
@@ -81,23 +84,29 @@ img {
 }
 
 
+/*  --------------------------------  */
+
+
 /*  NAV: THE ISLAND  */
 
 .site-header {
+  --island-size: 75px;    /* the full size. The island inherits it; the scrolled rule overrides it only on the island */
+  --island-hover-size: 75px;  /* same as --island-size, so hover square and open bar are the same height */
   position: fixed;
   top: 1.5rem;
   left: 0;
   width: 100%;
+  height: var(--island-size); /* the header is always as tall as the biggest island */
   z-index: 100;
   display: flex;
-  justify-content: center;
+  justify-content: center;    /* centred horizontally */
+  align-items: center;   /* centred vertically */
   padding: 0 2rem;
-  pointer-events: none; /* the empty strip doesn't block clicks on the page below */
+  pointer-events: none;  /* the empty strip doesn't block clicks on the page below */
 }
 
 /* the island itself: one box that changes width */
 .island {
-  --island-size: 75px; /* default root value for island size */
   position: relative;   /* lets the black ::before layer sit inside the island */
   pointer-events: auto;  /* the island is clickable */
   display: flex;
@@ -109,9 +118,9 @@ img {
   border-radius: 25%;
   overflow: hidden;  /* hides the links while narrow, and rounds off the black layer's corners */
   transition: width 0.6s cubic-bezier(0.32, 0.72, 0, 1),  /* Apple-like curve */
+              height 0.4s cubic-bezier(0.32, 0.72, 0, 1),  
               border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
-              color 0.35s,
-              transform 0.3s;
+              color 0.35s
 }
 
 /* THE BLACK LAYER: sits behind the stripes and links, covers the whole island */
@@ -128,7 +137,7 @@ img {
 .island:not(.is-open):hover,
 .island:not(.is-open):has(.menu-toggle:focus-visible) {
   color: var(--bg);    /* stripes turn white */
-  transform: scale(1.12);  /* grows: expands */
+  --island-size: var(--island-hover-size);   /* grows by size, not by scale, so the stripes stay the same */
 }
 
 .island:not(.is-open):hover::before,
@@ -147,16 +156,33 @@ img {
   clip-path: circle(150% at 50% 50%); /* much bigger, so the long bar is fully black */
 }
 
+/* SCROLLED + closed: a small black square, so it's readable over any content and takes little room */
+.island.is-scrolled:not(.is-open) {
+  --island-size: 48px;
+  color: var(--bg);            /* white stripes on the black square */
+}
+
+.island.is-scrolled:not(.is-open)::before {
+  clip-path: circle(75% at 50% 50%);   /* black layer fully on */
+}
+
+/* hovering it brings back the full-size version */
+.island.is-scrolled:not(.is-open):hover {
+  --island-size: var(--island-hover-size);
+}
+
+
 /* THE BUTTON inside the island */
 .menu-toggle {
-  position: relative;         /* keeps the button painted on top of the black layer */
+  position: relative;    /* keeps the button painted on top of the black layer */
   display: flex;
   flex-direction: column;   /* stacks the 3 stripes */
   justify-content: center;
+  align-items: center;   /* centres the stripes horizontally, whatever the button width */
   gap: 6px;
   width: var(--island-size);  /* same number as the island */
   height: var(--island-size);
-  padding: 0 18px;
+  padding: 0;                 /* no more size-based padding */
   background: transparent;
   border: none;
   color: inherit;   /* uses the island's colour */
@@ -165,6 +191,7 @@ img {
 
 .menu-toggle span {
   display: block;
+  width: 28px;
   height: 2px;
   background: currentColor;  /* stripes follow the colour above */
 }
@@ -217,6 +244,8 @@ img {
 }
 
 
+/*  --------------------------------  */
+
 
 /*  HERO  */
 .hero {
@@ -249,7 +278,7 @@ img {
 }
 
 .hero-details {
-  margin-top: auto;      /* pushes the bottom row to the bottom of the hero */
+  margin-top: auto;  /* pushes the bottom row to the bottom of the hero */
   display: grid;
   grid-template-columns: 1fr auto 1fr;  /* left | centre | right, with outer columns equal */
   align-items: center;
@@ -266,10 +295,133 @@ img {
 }
 
 
+/*  --------------------------------  */
+
+
+/*  ABOUT SECTION */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 2fr;   /* title column | text column, text gets twice the space */
+  gap: 2rem;
+  align-items: start;   /* both start at the top instead of stretching */
+  padding: 8rem 9rem;  /* big top padding so the fixed island doesn't cover the title */
+}
+
+.about p {
+  max-width: 45ch;  /* about 45 characters per line is comfortable to read */
+}
+
+
+/*  --------------------------------  */
+
+
+/*  STATEMENT SECTION */
+
+.statement {
+  padding: 20rem 9rem 9rem;
+}
+
+.statement-text {
+  font-size: var(--text-md);  /* 36-64px. For ONE short sentence you could use --text-lg (56-104px) */
+  font-weight: 600;
+  line-height: 1.2;        /* tight, because the text is big */
+  max-width: 22em;   /* limits the width, so the sentence wraps into a nice block */
+}
+
+
+/*  --------------------------------  */
+
+
+/*  PROJECTS SECTION  */
+.projects {
+  padding: 8rem 9rem;
+}
+
+.projects h2 {
+  margin-bottom: 4rem;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid for four projects */
+  gap: 4rem 4rem;     /* 4rem between rows, 4rem between columns */
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* matches your screenshots, so almost nothing is cropped */
+  object-fit: cover;    /* crops to fill the box instead of squashing */
+  border-radius: 24px;
+  background: var(--bg-subtle);  /* shows a tinted box until the image exists */
+}
+
+.project-card h3 {
+  position: relative;   /* the underline is positioned relative to the title */
+  display: inline-block;   /* title line box is only as wide as the title */
+  margin-top: 1.25rem;
+  margin-bottom: 0.1rem;   /* more space between the title and the paragraph */
+  padding-bottom: 0.15rem; /* room below the letters, so tjhe letters g and j never touch the underline */
+}
+
+/* the orange line: hidden at rest, same behaviour as the nav links */
+.project-card h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);  /* shrinked to nothing */
+  transform-origin: left;   /* grows from the left, shrinks back toward the left */
+  transition: transform 0.3s;
+}
+
+/* hovering anywhere on the card draws the line */
+.project-card:hover h3::after,
+.project-card:focus-visible h3::after {
+  transform: scaleX(1);
+}
+
+.project-card p {
+  font-size: var(--text-xs);
+  opacity: 0.7;      /* a bit softer than the title */
+}
+
+
+
+
+/*  --------------------------------  */
+
+
 
 /*  ACCESSIBILITY  */
 
 /* turns smooth scrolling and other animations off for people who ask their system for less motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+/*  RESPONSIVENESS  */
+
+/* on narrow screens the two columns stack: title above, text below */
+@media (max-width: 800px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* only on devices with a mouse: greyscale at rest, colour on hover */
+@media (hover: hover) and (pointer: fine) {
+  .project-card img {
+    filter: grayscale(1) opacity(70%);
+    transition: filter 0.4s, transform 0.4s;
+  }
+
+  .project-card:hover img,
+  .project-card:focus-visible img {
+    filter: grayscale(0) opacity(100%);   /* colour comes back */
+    transform: scale(1.02);     /* shrinks to 96% of its size, around its centre */
+  }
 }
