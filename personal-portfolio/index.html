@@ -3,66 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Page</title>
+    <title>Miguel Cruz | Portfolio</title>
+    <meta name="description" content="Portfolio of Miguel Cruz, an aspiring web developer based in Portugal.">
+
+    <!-- Inter font (weights 300 to 700) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="">
-    <main>
-        <section id="welcome-section">
-            <!--NAVIGATION BAR-->
-            <nav id="navbar">
-            <h1 class="maintitle">Miguel <span class="accent">Cruz</span></h1>
-            <ul>
-                <li class="nav-link"><a href="#projects" aria-label="go to projects section">Projects</a></li>
-                <li class="nav-link"><a href="#contact-section" aria-label="go to contact section">Contact</a></li>
+
+<body class="debug"> <!-- delete the class="debug" at the end -->
+
+    <!-- ===== NAVIGATION: 2 links | menu button | 2 links ===== -->
+    <header class="site-header">
+        <nav class="island" aria-label="Main">
+
+            <!-- left side: 2 links -->
+            <ul class="nav-links nav-links-left">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
             </ul>
+
+            <!-- centre: the three-stripe button (JS will toggle aria-expanded later) -->
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- right side: 2 links -->
+            <ul class="nav-links nav-links-right">
+                <li><a href="#learning">Learning</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
         </nav>
-        <!--HERO SECTION-->
-            <div class="hero-content">
-                <p>Hello there, welcome to my website</p>
-                <h1>I'm Miguel Cruz<br>Studying to become a<br><span class="accent">Web Developer</span></h1>
+    </header>
+
+    <main>
+        <!-- ===== HERO: the first thing a visitor sees ===== -->
+        <section class="hero" id="top">
+
+            <!-- h1 and p div center text -->
+            <div class="hero-intro">
+                <h1 class="hero-title">Hi, I'm<br>Miguel<span class="dot">.</span></h1>
+                <p class="hero-sub">On a journey into <span class="brush">web development</span>.</p>
+            </div>
+
+            <!-- bottom row div: clock (left), arrow (centre), location (right) -->
+            <div class="hero-details">
+                <p class="hero-clock">
+                    <span id="clock-date">07 OUT 2026</span>
+                    <span id="clock-hours">12</span><span class="clock-colon">:</span><span id="clock-minutes">34</span>
+                </p>
+                <!-- ↓ is a placeholder; we swap it for an SVG arrow later -->
+                <a class="scroll-arrow" href="#about" aria-label="Scroll down">↓</a>
+                <p class="hero-location">Based in Portugal</p>
             </div>
         </section>
-        <!--PROJECTS SECTION-->
-        <section id="projects" class="projects-sec">
-            <h2>Projects</h2>
-            <hr>
-            <div class="project-grid">
-                <a class="project-tile" href="https://stately-youtiao-94e34d.netlify.app/" target="_blank">
-                    <h3>Survey Form</h3>
-                    <img src="images/project 1.png" alt="project 1 preview" loading="lazy">
-                </a>
-                <a class="project-tile" href="https://amazing-puppy-c79bdd.netlify.app/" target="_blank">
-                    <h3>Tribute Page</h3>
-                    <img src="images/project 2.png" alt="project 2 preview" loading="lazy">
-                </a>
-                <a class="project-tile" href="https://chimerical-trifle-5e8015.netlify.app/" target="_blank">
-                    <h3>Documentation Page</h3>
-                    <img src="images/project 3.png" alt="project 3 preview" loading="lazy">
-                </a>
-                <a class="project-tile" href="https://spectacular-haupia-9b891e.netlify.app/" target="_blank">
-                    <h3>Product Landing Page</h3>
-                    <img src="images/project 4.png" alt="project 4 preview" loading="lazy">
-                </a>
-            </div>
-        </section>
-        <!--CONTACT SECTION-->
-        <section id="contact-section" class="contact-sec">
-            <hr>
-            <h3>Get in Touch!</h3>
-            <div class="contact-div">
-                <a class="contact-tile" id="profile-link" href="https://github.com/miguel1715" target="_blank">GitHub</a>
-                <a class="contact-tile" href="mailto:miguelcruz.1715@gmail.com">E-mail</a>
-            </div>
-        </section>
-    </main>
-    <!--FOOTER-->
-    <footer class="footer-sec">
-        <p><i>Built and Designed by Miguel Cruz</i></p>
-        <p>© <i>2026</i></p>
-    </footer>
+
+    <script src="script.js" defer></script>
+
 </body>
 </html>

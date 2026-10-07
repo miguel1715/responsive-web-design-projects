@@ -1,372 +1,275 @@
-.debug *{
-    outline: 1px solid yellow;
+/*.debug * {
+  outline: 1px solid red;
 }
 
-:root{
-    --theme-color1: rgba(0, 132, 255, 0.35);
-    --theme-color2: rgba(0, 200, 180, 0.28);
-    --theme-color3: rgba(0, 132, 255, 0.9);
-    --theme-color4: rgba(0, 200, 180, 0.9);
+
+/*  THEME COLOURS + FONTS + SIZES */
+
+/*  LIGHT THEME  */
+:root {
+  --bg: #FFEFD6;
+  --text: #1F1F1F;
+  --accent: #f46e2a;
+  --bg-subtle: #F5E4C3;
+
+  --font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --text-xs: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+  --text-sm: clamp(1.25rem, 1rem + 0.8vw, 1.875rem);
+  --text-md: clamp(2.25rem, 1.2rem + 3.6vw, 4rem);
+  --text-lg: clamp(3.5rem, 1.5rem + 6vw, 6.5rem);
+  --text-xl: clamp(4rem, 1rem + 11vw, 10.625rem);
 }
 
-* {
-    box-sizing: border-box;
+/*  DARK THEME  */
+:root[data-theme="dark"] {
+  --bg: #1F1F1F;
+  --text: #FFEFD6;
+  --accent: #FF8B52;
+  --bg-subtle: #2A2A2A;
 }
+
+
+/*  RESET PAGE LAYOUT  */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/*  MAIN PAGE STYLING  */
 
 body {
-    background-color: black;
-    color: white;
-    margin: 0;
-    font-size: 1rem;
-    letter-spacing: 0.01rem;
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.5;
 }
 
-#welcome-section {
-    min-height: 100vh;
-    background:
-        radial-gradient(
-            circle at top right,
-            var(--theme-color1),
-            transparent 65%
-        ),
-        radial-gradient(
-            circle at bottom left,
-            var(--theme-color2),
-            transparent 65%
-        ),
-        black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 2rem 16rem 200px;
-}
-
-#navbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: transparent;
-    padding: 20px 0;
-}
-
-#navbar > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 4rem;
-    font-size: 1.3rem;
-}
-
-.nav-link > a {
-    color: inherit;
-    text-decoration: none;
-    border: 3px solid var(--theme-color2);
-    padding: 15px;
-    border-radius: 15px;
-    transition: all 200ms;
-}
-.nav-link > a:hover{
-    border-color: var(--theme-color4);
-    box-shadow: 0 0 30px 0 var(--theme-color3);
-}
-
-.maintitle {
-    font-size: 2.5rem;
-}
-
-.hero-content {
-    margin-top: 11rem;
-    max-width: 600px;
-    font-size: 1.5rem;
-    text-align: left;
-    line-height: 1.2;
-}
-
-.hero-content p {
-    margin-bottom: 0;
-}
-
-.hero-content h1 {
-    margin-top: 1rem;
-    letter-spacing: normal;
-}
-
-#projects, #contact-section {
-    padding-top: 68px;   
-}
-
-hr{
-    border-color: rgba(0, 200, 180, 0.6);
-    margin: 0 auto 128px;
-    max-width: 600px;
-    
+h1 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1;
 }
 
 h2 {
-    text-align: center;
-    font-size: 3rem;
-    margin: 100px auto;
-}
-.project-grid {
-    display: grid;
-    grid-template-columns:  minmax(2rem, 1fr)
-                            minmax(2rem, 1fr);   
-    gap: 5rem;
-    place-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-bottom: 64px;
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.1;
 }
 
-.project-tile {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    text-align: center;
-    border: 6px solid var(--theme-color1);
-    border-radius: 20px;
-    font-size: 1.3rem;
-    width: 80%;
-    min-height: 200px;
-    color: inherit;
-    text-decoration: none;
-    transition: border-color 200ms, font-size 200ms, transform 200ms, box-shadow 200ms;
+h3 {
+  font-size: var(--text-sm);
+  font-weight: 600;
 }
 
-.project-tile > h3 {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.project-tile > img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 15px;
-    display: block;
-    opacity: 0.3;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.project-tile:hover {
-    border-color: var(--theme-color4);
-    transform: scale(1.1);
-    box-shadow: 0 0 30px 0 var(--theme-color4);
+
+/*  NAV: THE ISLAND  */
+
+.site-header {
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  pointer-events: none; /* the empty strip doesn't block clicks on the page below */
 }
 
-#contact-section{
-    text-align: center;
+/* the island itself: one box that changes width */
+.island {
+  --island-size: 75px; /* default root value for island size */
+  position: relative;   /* lets the black ::before layer sit inside the island */
+  pointer-events: auto;  /* the island is clickable */
+  display: flex;
+  align-items: center;
+  width: var(--island-size);  /* CLOSED: a square, same size as the button */
+  height: var(--island-size);
+  background: transparent;  /* ::before layer adds the background */
+  color: var(--text);
+  border-radius: 25%;
+  overflow: hidden;  /* hides the links while narrow, and rounds off the black layer's corners */
+  transition: width 0.6s cubic-bezier(0.32, 0.72, 0, 1),  /* Apple-like curve */
+              border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+              color 0.35s,
+              transform 0.3s;
 }
 
-.contact-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5rem;
-    min-height: auto;
-    padding: 128px 0;
-    margin-bottom: 128px;
+/* THE BLACK LAYER: sits behind the stripes and links, covers the whole island */
+.island::before {
+  content: "";
+  position: absolute;
+  inset: 0;  /* fills the island, and follows it as it stretches */
+  background: var(--text);
+  clip-path: circle(0% at 50% 50%);  /* HIDDEN: a circle of size 0 in the exact centre */
+  transition: clip-path 0.50s ease;
 }
 
-.contact-sec h3 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 0;
-    text-decoration: underline var(--theme-color3) 1px;
-
+/* HOVER while closed: the circle grows until the square is full */
+.island:not(.is-open):hover,
+.island:not(.is-open):has(.menu-toggle:focus-visible) {
+  color: var(--bg);    /* stripes turn white */
+  transform: scale(1.12);  /* grows: expands */
 }
 
-.contact-tile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    min-height: 128px;
-    border: 4px solid var(--theme-color1);
-    background: rgba(255, 255, 255, 0.03);
-    padding: 2rem;
-    border-radius: 20px;
-    text-align: center;
-    color: inherit;
-    text-decoration: none;
-    transition: border-color 200ms, background 200ms, transform 200ms, box-shadow 200ms;
+.island:not(.is-open):hover::before,
+.island:not(.is-open):has(.menu-toggle:focus-visible)::before {
+  clip-path: circle(75% at 50% 50%);  /* 75% is enough to reach the corners of a square */
 }
 
-.contact-tile:hover {
-    border-color: var(--theme-color4);
-    background: rgba(255, 255, 255, 0.06);
-    transform: scale(1.1);
-    box-shadow: 0 0 30px 0 var(--theme-color4);
+/* OPEN: JavaScript adds the class "is-open" */
+.island.is-open {
+  width: 100%;   /* stretches across the header */
+  border-radius: 40px;
+  color: var(--bg);
 }
 
-.footer-sec{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px 128px;
-    font-size: 1.2rem;
+.island.is-open::before {
+  clip-path: circle(150% at 50% 50%); /* much bigger, so the long bar is fully black */
 }
 
-.accent {
-  color: var(--theme-color4);
-  text-shadow: 0 0 8px rgba(0, 200, 180, 0.4);
+/* THE BUTTON inside the island */
+.menu-toggle {
+  position: relative;         /* keeps the button painted on top of the black layer */
+  display: flex;
+  flex-direction: column;   /* stacks the 3 stripes */
+  justify-content: center;
+  gap: 6px;
+  width: var(--island-size);  /* same number as the island */
+  height: var(--island-size);
+  padding: 0 18px;
+  background: transparent;
+  border: none;
+  color: inherit;   /* uses the island's colour */
+  cursor: pointer;
 }
 
-/*SMOOTH MOTION*/
-
-@media (prefers-reduced-motion: no-preference){
-    * {
-        scroll-behavior: smooth;
-    }
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  background: currentColor;  /* stripes follow the colour above */
 }
 
-/*RESPONSIVE WEB DESIGN*/
 
-/*PHONE SCREENS*/
-
-@media (max-width: 700px) {
-    #welcome-section {
-        padding: 1.5rem 1.25rem 5rem;
-    }
-
-    #navbar {
-        flex-direction: column;
-        align-items: center;
-        gap: 3rem;
-    }
-
-    #navbar > ul {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 4rem;
-        font-size: 1.1rem;
-    }
-
-    .hero-content {
-        margin-top: 9rem;
-        max-width: 100%;
-    }
-
-    h2 {
-        font-size: 2.2rem;
-        margin: 64px auto;
-    }
-
-    hr {
-        margin: 0 auto 64px;
-        max-width: 70%;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        max-width: 100%;
-        padding: 64px 1.25rem 64px;
-    }
-
-    .project-tile {
-        width: 80%;
-    }
-
-    .contact-div {
-        flex-direction: column;
-        gap: 5rem;
-        padding: 128px 0 64px;
-        margin-bottom: 64px;
-    }
-
-    #contact-section > h3 {
-        margin-top: 128px;
-    }
-
-    .footer-sec {
-        flex-direction: column;
-        gap: 0.2rem;
-        padding: 24px 1.25rem;
-        text-align: center;
-  }
-
-} 
-
-/*VERY SMALL SCREENS*/
-
-@media (max-width: 380px) {
-    .maintitle {
-        font-size: 2rem;
-    }
-
-    #navbar > ul {
-        font-size: 1rem;
-    }
-
-    .nav-link > a {
-        padding: 10px;
-    }
-
-    .hero-content {
-        margin-top: 7rem;
-        font-size: 1.05rem;
-    }
-
-    .contact-tile {
-        width: 100%;
-        max-width: 260px;
-  }
-
+/* THE LINK LISTS (left and right of the button) */
+.nav-links {
+  position: relative; /* paints the links above the black layer */
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  flex: 1;  /* each list takes half of the free space... */
+  min-width: 0;  /* alows the flex item to shrink to nothing */
+  font-size: var(--text-xs);
+  white-space: nowrap; /* link text never wraps during the resize */
+  opacity: 0;  /* CLOSED: invisible... */
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0s 0.25s;
 }
 
-/*TABLET SCREENS*/
+.island.is-open .nav-links {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.7s 0.1s, visibility 0s;  /* waits 0.1s so the bar is partly open first */
+}
 
-@media (min-width: 701px) and (max-width: 1024px) {
-    #welcome-section {
-        padding: 2rem 4rem 8rem;
-  }
+/* LINK HOVER: colored underline grows left to right, shrinks right to left */
+.nav-links a {
+  position: relative;
+  padding-block: 0.25rem;
+}
 
-    #navbar > ul {
-        gap: 2rem;
-  }
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);     /* hidden: squashed to zero width */
+  transform-origin: left;     /* leaving: shrinks toward the left */
+  transition: transform 0.3s;
+}
 
-    .hero-content {
-        margin-top: 11rem;
-        font-size: 1.35rem;
-  }
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;  /* starting: grows from the left */
+}
 
-    h2 {
-        font-size: 2.6rem;
-  }
 
-    .project-grid {
-        max-width: 650px;
-        gap: 3rem;
-  }
 
-    .project-tile {
-        width: 100%;
-  }
+/*  HERO  */
+.hero {
+  min-height: 100svh;   /* full visible screen height */
+  display: flex;
+  flex-direction: column;   /* title, subtitle, then bottom row, top to bottom */
+  padding: 6rem 2rem 2rem;   /* big top padding so the fixed nav doesn't cover the text */
+}
 
-    .contact-div {
-        padding-bottom: 64px;
-    }
+.hero-intro {
+  margin-top: auto;      /* centres the block vertically */
+  align-self: center;        /* centres the block horizontally */
+  text-align: center;
+}
 
-    .contact-tile {
-        width: 100%;
-        max-width: 200px;
-    }
+.dot {
+  color: var(--accent);
+}
 
-    .footer-sec {
-        padding: 32px 4rem;
-  }
+.hero-sub {
+  margin-top: 1.5rem;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 2;
+  font-style: italic;
+}
+
+.brush {
+  position: relative;
+}
+
+.hero-details {
+  margin-top: auto;      /* pushes the bottom row to the bottom of the hero */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* left | centre | right, with outer columns equal */
+  align-items: center;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+}
+
+.hero-location {
+  justify-self: end;
+}
+
+.scroll-arrow {
+  font-size: var(--text-sm);
+}
+
+
+
+/*  ACCESSIBILITY  */
+
+/* turns smooth scrolling and other animations off for people who ask their system for less motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
