@@ -301,17 +301,54 @@ img {
 /*  ABOUT SECTION */
 
 .about {
+  min-height: 100svh;
   display: grid;
-  grid-template-columns: 1fr 2fr;   /* title column | text column, text gets twice the space */
-  gap: 2rem;
-  align-items: start;   /* both start at the top instead of stretching */
-  padding: 8rem 9rem;  /* big top padding so the fixed island doesn't cover the title */
+  grid-template-columns: 3fr 2fr;     /* text column | photo column */
+  gap: 2rem 0.5rem;
+  align-items: center;  /* title, text and photo all start at the top of their area */
+  align-content: center;       /* the whole block is centred vertically in the section */
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: 16rem 2rem 5rem;
 }
 
-.about p {
-  max-width: 45ch;  /* about 45 characters per line is comfortable to read */
+.about-photo {
+  aspect-ratio: 4 / 5;    /* portrait shape */
+  grid-column: 2;       /* right-hand column */
+  grid-row: 1 / 3; /* starts at row 1 (level with the title) and ends after row 2 (the text) */
 }
 
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  /* image blend and sketch like effect */
+  mix-blend-mode: multiply;
+  
+  -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at center, #000 60%, transparent 100%);
+
+  filter: blur(40px) opacity(0);    /* hidden state: blurry and invisible */
+  transition: filter 2s ease;     /* it takes 2 seconds to sharpen and appear */
+}
+
+/* JavaScript toggle Class */
+.about-photo.is-visible img {
+  filter: blur(0) opacity(1);
+}
+
+.about-text {
+  max-width: 45ch;      /* about 45 characters per line */
+  align-self: end;      /* the text block sits at the bottom, level with the photo's bottom */
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+/* the reset removed paragraph margins, so we add space between the two paragraphs */
+.about-text p + p {
+  margin-top: 1.25rem;
+}
 
 /*  --------------------------------  */
 
@@ -345,7 +382,7 @@ img {
 .project-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2x2 grid for four projects */
-  gap: 4rem 4rem;     /* 4rem between rows, 4rem between columns */
+  gap: 4rem;     /* 4rem between rows, 4rem between columns */
 }
 
 .project-card img {

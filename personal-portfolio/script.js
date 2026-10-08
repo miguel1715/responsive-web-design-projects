@@ -39,3 +39,19 @@ function closeIsland() {
 island.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", closeIsland);
 });
+
+
+// ABOUT PHOTO: fades in once, when it scrolls into view
+const aboutPhoto = document.querySelector(".about-photo");
+
+const photoObserver = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting) {
+      aboutPhoto.classList.add("is-visible"); 
+      photoObserver.disconnect();   //  the effect only plays once
+    }
+  },
+  { threshold: 0.5 }   // fires when 50% of the photo is visible
+);
+
+photoObserver.observe(aboutPhoto);
