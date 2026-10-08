@@ -41,7 +41,7 @@ island.querySelectorAll(".nav-links a").forEach((link) => {
 });
 
 
-// ABOUT PHOTO: fades in once, when it scrolls into view
+// ABOUT PHOTO: fades in / lights up once, when it scrolls into view
 const aboutPhoto = document.querySelector(".about-photo");
 
 const photoObserver = new IntersectionObserver(

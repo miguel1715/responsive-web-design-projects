@@ -13,6 +13,11 @@
   --bg-subtle: #F5E4C3;
 
   --font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-screen: "VT323", "Courier New", monospace;
+
+  --screen-bg: #000;          /* OLED #black */
+  --screen-text: #ebebeb;        /* text names */
+  --screen-bezel: #2a2a2a;    /* faint edge lines */
 
   --text-xs: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
   --text-sm: clamp(1.25rem, 1rem + 0.8vw, 1.875rem);
@@ -27,7 +32,67 @@
   --text: #FFEFD6;
   --accent: #FF8B52;
   --bg-subtle: #2A2A2A;
+
+  --screen-bg: #FFEFD6;     /* cream bar */
+  --screen-text: #1F1F1F;     /* #black names */
+  --screen-bezel: #d9c7a3;   /* a slightly darker cream for the edge lines */
 }
+:root[data-theme="dark"] .stack-list li:nth-child(3) { /* darker #yellow for theme switch js icon */
+  --brand: #d4a900; 
+}
+
+
+/* ABOUT PHOTO LIGHT BULB EFFECT FOR DARK THEME */
+:root[data-theme="dark"] .about-photo {
+
+  /* the light: a cream rectangle that the masks cut into a beam */
+  background: var(--text);
+
+  /* three marks stacked */
+  -webkit-mask-image:   /* safari */
+    /* 1. the cone */
+    conic-gradient(from 162deg at 50% -55%, transparent 0deg, #000 10deg, #000 26deg, transparent 36deg),
+    /* 2. top/bottom fade */
+    linear-gradient(to bottom, transparent 0%, #000 8%, #000 35%, transparent 100%),
+    /* 3. left/right fade */
+    linear-gradient(to left, transparent 0%, #000 40%, #000 60%, transparent 100%);
+
+  mask-image:
+    /* 1. the cone */
+    conic-gradient(from 162deg at 50% -55%, transparent 0deg, #000 10deg, #000 26deg, transparent 36deg),
+    /* 2. top/bottom fade */
+    linear-gradient(to bottom, transparent 0%, #000 8%, #000 35%, transparent 100%),
+    /* 3. left/right fade */
+    linear-gradient(to left, transparent 0%, #000 40%, #000 60%, transparent 100%);
+
+  /* show only where all marks overlap */
+  -webkit-mask-composite: source-in;  /* safari */
+  mask-composite: intersect;          /* other browsers */
+
+    opacity: 0;   /* the light is OFF: the portrait is there, but very dark */
+}
+
+  /* JavaScript adds "is-visible" - light flicker effect */
+:root[data-theme="dark"] .about-photo.is-visible {
+    animation: bulb-on 0.2s 1.5s step-end forwards;
+  /* name | duration | delay | jump between keyframes instead of blending | stay on the last value */
+}
+
+/* the flicker: each step is an instant jump */
+@keyframes bulb-on {
+  0%   { opacity: 1; }   /* switch flicks on */
+  30%  { opacity: 0.12; } /* flickers off */
+  55%  { opacity: 1; }   /* on */
+  70%  { opacity: 0.4; } /* dips */
+  85%  { opacity: 1; }  /* on, and it stays */
+  100% { opacity: 1; }
+}
+
+:root[data-theme="dark"] .about-photo img {
+  filter: none;   /* no blur and no fade: the sketch is simply there */
+}
+
+/*  --------------------------------  */
 
 
 /*  RESET PAGE LAYOUT  */
@@ -90,7 +155,7 @@ img {
 /*  NAV: THE ISLAND  */
 
 .site-header {
-  --island-size: 75px;    /* the full size. The island inherits it; the scrolled rule overrides it only on the island */
+  --island-size: 75px;  /* the full size. The island inherits it; the scrolled rule overrides it only on the island */
   --island-hover-size: 75px;  /* same as --island-size, so hover square and open bar are the same height */
   position: fixed;
   top: 1.5rem;
@@ -107,7 +172,7 @@ img {
 
 /* the island itself: one box that changes width */
 .island {
-  position: relative;   /* lets the black ::before layer sit inside the island */
+  position: relative;   /* lets the #black ::before layer sit inside the island */
   pointer-events: auto;  /* the island is clickable */
   display: flex;
   align-items: center;
@@ -116,7 +181,7 @@ img {
   background: transparent;  /* ::before layer adds the background */
   color: var(--text);
   border-radius: 25%;
-  overflow: hidden;  /* hides the links while narrow, and rounds off the black layer's corners */
+  overflow: hidden;  /* hides the links while narrow, and rounds off the #black layer's corners */
   transition: width 0.6s cubic-bezier(0.32, 0.72, 0, 1),  /* Apple-like curve */
               height 0.4s cubic-bezier(0.32, 0.72, 0, 1),  
               border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
@@ -136,16 +201,16 @@ img {
 /* HOVER while closed: the circle grows until the square is full */
 .island:not(.is-open):hover,
 .island:not(.is-open):has(.menu-toggle:focus-visible) {
-  color: var(--bg);    /* stripes turn white */
-  --island-size: var(--island-hover-size);   /* grows by size, not by scale, so the stripes stay the same */
+  color: var(--bg);    /* stripes turn #white */
+  --island-size: var(--island-hover-size);  /* grows by size, not by scale, so the stripes stay the same */
 }
 
 .island:not(.is-open):hover::before,
 .island:not(.is-open):has(.menu-toggle:focus-visible)::before {
-  clip-path: circle(75% at 50% 50%);  /* 75% is enough to reach the corners of a square */
+  clip-path: circle(75% at 50% 50%);
 }
 
-/* OPEN: JavaScript adds the class "is-open" */
+/* JavaScript adds the class "is-open" */
 .island.is-open {
   width: 100%;   /* stretches across the header */
   border-radius: 40px;
@@ -153,17 +218,17 @@ img {
 }
 
 .island.is-open::before {
-  clip-path: circle(150% at 50% 50%); /* much bigger, so the long bar is fully black */
+  clip-path: circle(150% at 50% 50%); /* much bigger, so the long bar is fully #black */
 }
 
-/* SCROLLED + closed: a small black square, so it's readable over any content and takes little room */
+/* SCROLLED + closed: */
 .island.is-scrolled:not(.is-open) {
   --island-size: 48px;
-  color: var(--bg);            /* white stripes on the black square */
+  color: var(--bg);   /* #white stripes on the #black square */
 }
 
 .island.is-scrolled:not(.is-open)::before {
-  clip-path: circle(75% at 50% 50%);   /* black layer fully on */
+  clip-path: circle(75% at 50% 50%);   /* #black layer fully on */
 }
 
 /* hovering it brings back the full-size version */
@@ -174,7 +239,7 @@ img {
 
 /* THE BUTTON inside the island */
 .menu-toggle {
-  position: relative;    /* keeps the button painted on top of the black layer */
+  position: relative;    /* keeps the button painted on top of the #black layer */
   display: flex;
   flex-direction: column;   /* stacks the 3 stripes */
   justify-content: center;
@@ -197,14 +262,14 @@ img {
 }
 
 
-/* THE LINK LISTS (left and right of the button) */
+/* THE LINK LISTS */
 .nav-links {
-  position: relative; /* paints the links above the black layer */
+  position: relative; /* paints the links above the #black layer */
   list-style: none;
   display: flex;
   justify-content: space-evenly;
   flex: 1;  /* each list takes half of the free space... */
-  min-width: 0;  /* alows the flex item to shrink to nothing */
+  min-width: 0;  /* flex item shrinks to nothing */
   font-size: var(--text-xs);
   white-space: nowrap; /* link text never wraps during the resize */
   opacity: 0;  /* CLOSED: invisible... */
@@ -256,8 +321,8 @@ img {
 }
 
 .hero-intro {
-  margin-top: auto;      /* centres the block vertically */
-  align-self: center;        /* centres the block horizontally */
+  margin-top: auto;
+  align-self: center;
   text-align: center;
 }
 
@@ -278,9 +343,9 @@ img {
 }
 
 .hero-details {
-  margin-top: auto;  /* pushes the bottom row to the bottom of the hero */
+  margin-top: auto; /* pushes the bottom row to the bottom of the hero */
   display: grid;
-  grid-template-columns: 1fr auto 1fr;  /* left | centre | right, with outer columns equal */
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   font-size: var(--text-xs);
   text-transform: uppercase;
@@ -303,18 +368,18 @@ img {
 .about {
   min-height: 100svh;
   display: grid;
-  grid-template-columns: 3fr 2fr;     /* text column | photo column */
+  grid-template-columns: 3fr 2fr;   /* text column | photo column */
   gap: 2rem 0.5rem;
-  align-items: center;  /* title, text and photo all start at the top of their area */
-  align-content: center;       /* the whole block is centred vertically in the section */
+  align-items: center; 
+  align-content: center;
   max-width: 64rem;
   margin-inline: auto;
-  padding: 16rem 2rem 5rem;
+  padding: 10rem 2rem 13rem;
 }
 
 .about-photo {
-  aspect-ratio: 4 / 5;    /* portrait shape */
-  grid-column: 2;       /* right-hand column */
+  aspect-ratio: 4 / 5; /* portrait shape */
+  grid-column: 2;    /* right-hand column */
   grid-row: 1 / 3; /* starts at row 1 (level with the title) and ends after row 2 (the text) */
 }
 
@@ -329,8 +394,8 @@ img {
   -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 60%, transparent 100%);
   mask-image: radial-gradient(ellipse closest-side at center, #000 60%, transparent 100%);
 
-  filter: blur(40px) opacity(0);    /* hidden state: blurry and invisible */
-  transition: filter 2s ease;     /* it takes 2 seconds to sharpen and appear */
+  filter: blur(40px) opacity(0); /* hidden state: blurry and invisible */
+  transition: filter 2s ease;  /* it takes 2 seconds to sharpen and appear */
 }
 
 /* JavaScript toggle Class */
@@ -343,12 +408,96 @@ img {
   align-self: end;      /* the text block sits at the bottom, level with the photo's bottom */
   font-size: 1.4rem;
   line-height: 1.5;
+  padding-bottom: 24px;
 }
 
 /* the reset removed paragraph margins, so we add space between the two paragraphs */
 .about-text p + p {
   margin-top: 1.25rem;
 }
+
+/*  --------------------------------  */
+
+
+/*  STACK STRIP  */
+
+.stack {
+  --stack-gap: 4rem;
+  position: relative;
+  padding: 0.4rem 0;
+  background: var(--screen-bg);
+  color: var(--screen-text);
+  border-block: 1px solid var(--screen-bezel);
+  overflow: hidden;
+  filter: opacity(90%);
+}
+
+/* the track holds both lists side by side, and slides to the left */
+.stack-track {
+  display: flex;
+  width: max-content;  /* as wide as both lists together */
+  animation: stack-scroll 20s linear infinite; /* 20 seconds per loop, constant speed, forever */
+}
+
+
+.stack-list {
+  list-style: none;
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100vw;               /* still fills wide monitors */
+  font-family: var(--font-screen);
+  font-size: 1.4rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* each item grows equally to fill the list, with half a gap of space on each side */
+.stack-list li {
+  position: relative;                   /* the dot is positioned against this li */
+  flex: 1 0 auto;                       /* grow to share any free space, never shrink */
+  display: flex;
+  justify-content: center;              /* icon + name stay centred in the li */
+  padding-inline: calc(var(--stack-gap) / 2);
+  align-items: center;
+}
+
+/* the dot sits on the right edge of the li, i.e. exactly between two items */
+.stack-list li::after {
+  content: "•";
+  position: absolute;
+  color: var(--accent);
+  right: 0;
+  transform: translateX(50%);           /* centres the dot on that edge */
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;                  /* as big as the text */
+  height: 1em;
+  margin-right: 0.4em;
+  background: currentColor;    /* uses the colour of the text */
+  
+  /* Safari */
+  -webkit-mask: var(--icon) center / contain no-repeat;   
+  mask: var(--icon) center / contain no-repeat;
+}
+
+/* each icon takes its own brand colour (set per item below) */
+.stack-list .icon {
+  color: var(--brand, #fff);           /* falls back to #white if an item has no colour */
+}
+
+/* brand colours, in the same order as the list in your HTML */
+.stack-list li:nth-child(1) { --brand: #e34f26; }  /* HTML5 */
+.stack-list li:nth-child(2) { --brand: #2d7ff9; }  /* CSS */
+.stack-list li:nth-child(3) { --brand: #f7df1e; }  /* JavaScript */
+.stack-list li:nth-child(4) { --brand: #f05032; }  /* Git */
+.stack-list li:nth-child(5) { --brand: var(--screen-text); }  /* GitHub: follows the strip's text colour */
+.stack-list li:nth-child(6) { --brand: #00c7b7; }  /* Netlify */
+.stack-list li:nth-child(7) { --brand: #23a9f2; }  /* VS Code */
+
+
 
 /*  --------------------------------  */
 
@@ -401,7 +550,7 @@ img {
   padding-bottom: 0.15rem; /* room below the letters, so tjhe letters g and j never touch the underline */
 }
 
-/* the orange line: hidden at rest, same behaviour as the nav links */
+/* the #orange line: hidden at rest, same behaviour as the nav links */
 .project-card h3::after {
   content: "";
   position: absolute;
@@ -433,12 +582,46 @@ img {
 
 
 
+/*  ANIMATIONS  */
+
+/* moving the track left by 50% */
+@keyframes stack-scroll {
+  to { transform: translateX(-50%); }
+}
+
+
+/*  --------------------------------  */
+
+
 /*  ACCESSIBILITY  */
 
 /* turns smooth scrolling and other animations off for people who ask their system for less motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  
+  /* stops stack bar motion */
+  .stack-track {
+    animation: none; width: auto; justify-content: center; 
+  }
+  .stack-list {
+    min-width: 0; 
+  }
+  .stack-list[aria-hidden="true"] {
+    display: none;
+  }
+
+    /* dark theme: skip the flicker, the light is just on */
+  :root[data-theme="dark"] .about-photo {
+    opacity: 1;
+  }
+  :root[data-theme="dark"] .about-photo.is-visible {
+    animation: none;
+  }
 }
+
+
+/*  --------------------------------  */
+
 
 /*  RESPONSIVENESS  */
 
@@ -459,6 +642,6 @@ img {
   .project-card:hover img,
   .project-card:focus-visible img {
     filter: grayscale(0) opacity(100%);   /* colour comes back */
-    transform: scale(1.02);     /* shrinks to 96% of its size, around its centre */
+    transform: scale(1.02);
   }
 }
