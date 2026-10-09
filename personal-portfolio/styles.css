@@ -14,6 +14,7 @@
 
   --font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-screen: "VT323", "Courier New", monospace;
+  --font-hand: "Italianno", "Apple Chancery", cursive;
 
   --screen-bg: #000;          /* OLED #black */
   --screen-text: #ebebeb;        /* text names */
@@ -485,7 +486,7 @@ img {
 
 /* each icon takes its own brand colour (set per item below) */
 .stack-list .icon {
-  color: var(--brand, #fff);           /* falls back to #white if an item has no colour */
+  color: var(--brand, #fff); /* falls back to #white if an item has no colour */
 }
 
 /* brand colours, in the same order as the list in your HTML */
@@ -505,23 +506,45 @@ img {
 /*  STATEMENT SECTION */
 
 .statement {
-  padding: 20rem 9rem 9rem;
+  padding: 13rem 9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .statement-text {
-  font-size: var(--text-md);  /* 36-64px. For ONE short sentence you could use --text-lg (56-104px) */
-  font-weight: 600;
-  line-height: 1.2;        /* tight, because the text is big */
-  max-width: 22em;   /* limits the width, so the sentence wraps into a nice block */
+  font-family: var(--font-hand);
+  font-size: calc(var(--text-md));
+  max-width: 30ch;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+  filter: blur(0.4px);
 }
 
+
+/* who said it, below the quote */
+.statement-source {
+  margin-top: 2rem;
+  padding-right: 1.2rem;
+  font-family: var(--font-screen);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  text-align: end;
+}
+
+.statement-source cite {
+  font-style: normal;   /* cite was italic by default */
+}
 
 /*  --------------------------------  */
 
 
 /*  PROJECTS SECTION  */
 .projects {
-  padding: 8rem 9rem;
+  padding: 0rem 9rem;
 }
 
 .projects h2 {
