@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -185,12 +185,34 @@
 
     </main>
 
-    <!-- ===== FOOTER =====
-    <footer class="site-footer">
-        <p class="footer-name">MIGUEL</p>
-        <p>©2026 Miguel Cruz</p>
-    </footer>
-    -->
+       <!--=== FOOTER ===-->
+<footer class="site-footer">
+
+    <!-- top row: copyright on the left, links on the right -->
+    <div class="footer-top">
+        <p class="footer-copy">© 2026 Miguel Cruz</p>
+
+        <nav class="footer-links" aria-label="Footer">
+            <!-- GitHub: same icon trick as the strip (a mask that takes the text colour) -->
+            <a href="https://github.com/miguel1715" target="_blank" rel="noopener noreferrer">
+                <span class="icon" style="--icon: url(images/icons/github.svg)" aria-hidden="true"></span>
+                GitHub
+            </a>
+
+            <!-- Email: inline SVG envelope, drawn with the text colour -->
+            <a href="mailto:miguelcruz.1715@gmail.com">
+                <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                Email
+            </a>
+        </nav>
+    </div>
+
+    <!-- big faded name, decoration only (hidden from screen readers) -->
+    <p class="footer-name" aria-hidden="true">CRUZ</p>
+</footer>
 
     <script src="script.js" defer></script>
 

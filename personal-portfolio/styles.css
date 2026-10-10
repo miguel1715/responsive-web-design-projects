@@ -544,7 +544,7 @@ img {
 
 /*  PROJECTS SECTION  */
 .projects {
-  padding: 0rem 9rem;
+  padding: 0rem 9rem 9rem;
 }
 
 .projects h2 {
@@ -599,6 +599,79 @@ img {
 }
 
 
+/*  --------------------------------  */
+
+
+
+/* === FOOTER === */
+.site-footer {
+    overflow: hidden;                /* crops the big name at the bottom edge */
+    padding: 4rem 9rem 0;            /* no bottom padding: the name sits right on the edge */
+    background: var(--text);         /* dark in light theme, cream in dark theme: the colours swap */
+    color: var(--bg);
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;                 /* stacks on narrow screens */
+    gap: 1.5rem 2rem;
+}
+
+.footer-copy {
+    font-family: var(--font-screen); /* VT323, like the strip */
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem;
+}
+
+/* each link is a pill with an icon and a label */
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;                     /* space between icon and label */
+    padding: 0.6rem 1.2rem;
+    border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent);  /* faint outline */
+    border-radius: 999px;            /* fully rounded ends */
+    font-size: var(--text-xs);
+    transition: background 0.2s, color 0.2s;
+}
+
+/* hover: the pill fills in and the colours swap */
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.footer-links .icon {
+    margin-right: 0;                 /* the gap above already spaces it */
+}
+
+.footer-icon {
+    width: 1em;
+    height: 1em;
+}
+
+/* the big name: huge, faint and cropped by the footer's bottom edge */
+.footer-name {
+    margin-top: 3rem;
+    font-size: clamp(6rem, 26vw, 24rem);   /* scales with the screen, with a cap */
+    font-weight: 700;
+    line-height: 0.75;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: color-mix(in srgb, var(--bg) 12%, transparent);  /* a slightly lighter shade of the footer colour */
+    transform: translateY(15%);      /* pushes the bottom of the letters below the edge, so they get cropped */
+    user-select: none;               /* can't be selected, it's decoration */
+}
 
 
 /*  --------------------------------  */
