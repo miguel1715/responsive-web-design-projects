@@ -55,3 +55,25 @@ const photoObserver = new IntersectionObserver(
 );
 
 photoObserver.observe(aboutPhoto);
+
+
+// THEME TOGGLE: the bulb button flips data-theme on <html>
+const themeButton = document.querySelector(".theme-toggle");
+const rootEl = document.documentElement;   // the <html> element, where the CSS looks for data-theme
+
+themeButton.addEventListener("click", () => {
+  // no attribute yet means light, so "not dark" covers the first click too
+  const goingDark = rootEl.dataset.theme !== "dark";
+
+  // dataset.theme reads and writes the data-theme attribute
+  rootEl.dataset.theme = goingDark ? "dark" : "light";
+
+  // the label always names what the next click will do
+  themeButton.setAttribute("aria-label", goingDark ? "Switch to light theme" : "Switch to dark theme");
+
+  if (goingDark) {
+    const photo = document.querySelector(".about-photo");
+    photo.classList.remove("is-visible");   // reset, so the flicker animation can start over
+    photoObserver.observe(photo);           // watch it again: if it's on screen, the observer adds is-visible
+  }
+});

@@ -14,15 +14,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="debug"> <!-- delete the class="debug" at the end -->
+<body>
 
-
-
-    <!-- === NAVIGATION: 2 links | menu button | 2 links === -->
+    <!-- === NAVIGATION: 2 links | menu button | 1 link + 1 button === -->
     <header class="site-header">
         <nav class="island" aria-label="Main">
 
-            <!-- left side: 2 links -->
+           <!-- left side: about + projects -->
             <ul class="nav-links nav-links-left">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -35,17 +33,20 @@
                 <span></span>
             </button>
 
-            <!-- right side: 2 links -->
+            <!-- right side: contact + theme button -->
             <ul class="nav-links nav-links-right">
-                <li><a href="#learning">Learning</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <!-- theme switch -->
+                <li>
+                    <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+                        <span class="theme-labels" aria-hidden="true"><span>Light</span><span>Dark</span></span>
+                        <span class="theme-thumb" aria-hidden="true"></span>
+                    </button>
+                </li>
             </ul>
 
         </nav>
     </header>
-
-
-
 
     <main>
         <!-- === HERO: the first thing a visitor sees === -->
@@ -63,14 +64,12 @@
                     <span id="clock-date">07 OUT 2026</span>
                     <span id="clock-hours">12</span><span class="clock-colon">:</span><span id="clock-minutes">34</span>
                 </p>
-                <!-- ↓ is a placeholder; we swap it for an SVG arrow later -->
+                <!-- ↓ is a placeholder ??  -->
                 <a class="scroll-arrow" href="#about" aria-label="Scroll down">↓</a>
                 <p class="hero-location">Based in Portugal</p>
             </div>
         </section>
         
-
-
 
         <!--=== ABOUT SECTION ===-->
         <section class="about" id="about">
@@ -168,8 +167,7 @@
     </main>
 
     <!--=== FOOTER ===-->
-    <footer class="site-footer">
-
+    <footer class="site-footer" id="contact">
         <!-- top row: icon links on the left, copyright on the right (the row pushes them to opposite edges) -->
         <div class="footer-top">
             <nav class="footer-links" aria-label="Footer">
@@ -181,20 +179,16 @@
                     </svg>
                 </a>
 
-                <a href="https://github.com/miguel1715" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <a href="https://github.com/miguel1715" target="_blank" aria-label="GitHub">
                     <span class="icon" style="--icon: url(images/icons/github.svg)" aria-hidden="true"></span>
                 </a>
-
             </nav>
-
             <p class="footer-copy">© 2026 Miguel Cruz</p>
         </div>
 
         <!-- big faded name, decoration only (hidden from screen readers) -->
         <p class="footer-name" aria-hidden="true">CRUZ</p>
     </footer>
-
     <script src="script.js" defer></script>
-
 </body>
 </html>

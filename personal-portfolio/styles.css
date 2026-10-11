@@ -1,8 +1,3 @@
-/*.debug * {
-  outline: 1px solid red;
-}
-
-
 /*  THEME COLOURS + FONTS + SIZES */
 
 /*  LIGHT THEME  */
@@ -81,17 +76,7 @@
   /* JavaScript adds "is-visible" - light flicker effect */
 :root[data-theme="dark"] .about-photo.is-visible {
     animation: bulb-on 0.2s 1.5s step-end forwards;
-  /* name | duration | delay | jump between keyframes instead of blending | stay on the last value */
-}
-
-/* the flicker: each step is an instant jump */
-@keyframes bulb-on {
-  0%   { opacity: 1; }   /* switch flicks on */
-  30%  { opacity: 0.12; } /* flickers off */
-  55%  { opacity: 1; }   /* on */
-  70%  { opacity: 0.4; } /* dips */
-  85%  { opacity: 1; }  /* on, and it stays */
-  100% { opacity: 1; }
+  /* name, duration, delay, jump between keyframes, stay on the last value */
 }
 
 :root[data-theme="dark"] .about-photo img {
@@ -287,6 +272,7 @@ img {
   list-style: none;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   flex: 1;  /* each list takes half of the free space... */
   min-width: 0;  /* flex item shrinks to nothing */
   font-size: var(--text-xs);
@@ -325,6 +311,70 @@ img {
 .nav-links a:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;  /* starting: grows from the left */
+}
+
+/* THEME SWITCH BUTTON  */
+.theme-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 8rem;
+  height: 2.6rem;
+  padding: 10px 5px 10px;
+  background: transparent;
+  border: 1.5px solid color-mix(in srgb, currentColor 35%, transparent);   /* faint edge, like before */
+  border-radius: 0.6rem;            /* about 25% of the height: a fixed value, because 25% of the width would be too round */
+  color: inherit;                   /* follows the island colour */
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  border-color: currentColor;       /* the edge gets stronger when you point at it */
+}
+
+/* the two words, one in each half of the track */
+.theme-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* Light on the left half, Dark on the right half */
+  width: 100%;
+  font-family: var(--font-screen);  /* VT323, like the strip */
+  font-size: 1.15rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+/* the thumb: covers one half, hides the word under it */
+.theme-thumb {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc(50% - 2px);
+  background: currentColor;         /* same colour as the words, so the covered word disappears */
+  border-radius: calc(0.6rem - 2px);
+  transform: translateX(100%);      /* LIGHT theme: thumb on the right, so it covers Dark and reveals Light */
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);   /* the same smooth curve as the island */
+}
+
+/* a little grip line on the thumb */
+.theme-thumb::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  bottom: 30%;
+  left: 50%;
+  width: 2px;
+  background: var(--text);          /* the island's background colour, so it contrasts with the thumb */
+  transform: translateX(-50%);
+}
+
+/* DARK theme */
+:root[data-theme="dark"] .theme-thumb {
+  transform: translateX(0);
 }
 
 
@@ -532,7 +582,7 @@ img {
 
 .statement-text {
   font-family: var(--font-hand);
-  font-size: calc(var(--text-md));
+  font-size: 53px;
   max-width: 30ch;
   font-weight: 400;
   line-height: 1.4;
@@ -708,7 +758,21 @@ img {
         0 0.01em 0 color-mix(in srgb, var(--bg) 5%, transparent);  /* light edge underneath catching the lower lip */
     transform: translateY(18%);
     user-select: none;
-    pointer-events: none;  /* this fixes the icons not working when hovered. bit name covers the bottom of the button */
+    pointer-events: none;  /* this fixes the icons not working when hovered. big name covers the bottom of the button */
+}
+
+/* DARK THEME */
+:root[data-theme="dark"] .site-footer::after {
+    mix-blend-mode: multiply;   /* multiply shows on light colours, like the page */
+    opacity: 0.09;     /* the same strength as --grain in the light theme */
+}
+
+/* DARK THEME carved name */
+:root[data-theme="dark"] .footer-name {
+    color: color-mix(in srgb, var(--text) 97%, black);
+    text-shadow:
+        0 -0.007em 0 rgba(70, 50, 20, 0.3),   /* warm shade on the top edge, no blur */
+        0 0.009em 0 #fff;  /* white lip on the bottom edge, no blur */
 }
 
 
@@ -721,6 +785,16 @@ img {
 /* moving the track left by 50% */
 @keyframes stack-scroll {
   to { transform: translateX(-50%); }
+}
+
+/* the flicker: each step is an instant jump */
+@keyframes bulb-on {
+  0%   { opacity: 1; }   /* switch flicks on */
+  30%  { opacity: 0.12; } /* flickers off */
+  55%  { opacity: 1; }   /* on */
+  70%  { opacity: 0.4; } /* dips */
+  85%  { opacity: 1; }  /* on, and it stays */
+  100% { opacity: 1; }
 }
 
 
@@ -744,7 +818,7 @@ img {
     display: none;
   }
 
-    /* dark theme: skip the flicker, the light is just on */
+  /* dark theme: skip the flicker, the light is just on */
   :root[data-theme="dark"] .about-photo {
     opacity: 1;
   }
@@ -752,12 +826,17 @@ img {
     animation: none;
   }
 
-    /* footer icons: no spin */
+  /* footer icons: no spin */
   .footer-links a:hover .icon,
   .footer-links a:hover .footer-icon,
   .footer-links a:focus-visible .icon,
   .footer-links a:focus-visible .footer-icon {
     transform: none;
+  }
+
+  /* theme switch: the slider jumps instead of sliding */
+  .theme-thumb {
+    transition: none;
   }
 }
 
