@@ -7,14 +7,17 @@
 
 /*  LIGHT THEME  */
 :root {
-  --bg: #FFEFD6;
+  --bg: #FFF6E8;
   --text: #1F1F1F;
   --accent: #f46e2a;
-  --bg-subtle: #F5E4C3;
+  --bg-subtle: #F7EBD5;
+  --grain: 0.09;
+  --grain-blend: multiply;
 
   --font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-screen: "VT323", "Courier New", monospace;
   --font-hand: "Italianno", "Apple Chancery", cursive;
+  --font-display: "Unbounded", "Arial Black", sans-serif;   /* the big footer name */
 
   --screen-bg: #000;          /* OLED #black */
   --screen-text: #ebebeb;        /* text names */
@@ -30,13 +33,15 @@
 /*  DARK THEME  */
 :root[data-theme="dark"] {
   --bg: #1F1F1F;
-  --text: #FFEFD6;
+  --text: #FFF6E8;
   --accent: #FF8B52;
   --bg-subtle: #2A2A2A;
 
-  --screen-bg: #FFEFD6;     /* cream bar */
-  --screen-text: #1F1F1F;     /* #black names */
-  --screen-bezel: #d9c7a3;   /* a slightly darker cream for the edge lines */
+  --screen-bg: #FFF6E8;
+  --screen-text: #1F1F1F;
+  --screen-bezel: #E6D8BD;
+  --grain: 0.3;
+  --grain-blend: overlay;   /* overlay shows on dark colours */
 }
 :root[data-theme="dark"] .stack-list li:nth-child(3) { /* darker #yellow for theme switch js icon */
   --brand: #d4a900; 
@@ -120,6 +125,19 @@ body {
   font-size: var(--text-sm);
   font-weight: 400;
   line-height: 1.5;
+  position: relative;   /* the grain layer is positioned inside the body */
+}
+
+/* PAPER GRAIN: a noise layer behind all the content, over the page colour */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;                        /* covers the whole page, top to bottom */
+  z-index: -1;                     /* behind the text and images, above the background colour */
+  background-image: url(images/noise.png);   /* the same noise file as the footer */
+  mix-blend-mode: var(--grain-blend);   /* each theme picks its own blend */
+  opacity: var(--grain);           /* strength comes from the theme variable above */
+  pointer-events: none;            /* clicks go through it */
 }
 
 h1 {
@@ -605,17 +623,30 @@ img {
 
 /* === FOOTER === */
 .site-footer {
-    overflow: hidden;                /* crops the big name at the bottom edge */
-    padding: 4rem 9rem 0;            /* no bottom padding: the name sits right on the edge */
-    background: var(--text);         /* dark in light theme, cream in dark theme: the colours swap */
+    overflow: hidden; /* crops the big name at the bottom edge */
+    padding: 4rem 1rem 0;
+    background: var(--text);  /* the colours swap depending on the theme */
     color: var(--bg);
+    position: relative; /* the grain layer is positioned inside the footer */
+}
+
+/* grain: a layer of noise laid over the whole footer */
+.site-footer::after {
+    content: "";    /* needs a content to exist */
+    position: absolute;
+    inset: 0;  /* covers the whole footer */
+    background-image: url(images/noise.png);
+    mix-blend-mode: soft-light;   /* mixes the noise into what's underneath instead of covering it */
+    opacity: 0.17;   /* how strong the grain is */
+    pointer-events: none;   /* the icons still react */
 }
 
 .footer-top {
+    padding: 0rem 6rem 0rem 7rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;                 /* stacks on narrow screens */
+    flex-wrap: wrap;  /* stacks on narrow screens */
     gap: 1.5rem 2rem;
 }
 
@@ -629,48 +660,55 @@ img {
 
 .footer-links {
     display: flex;
-    gap: 1rem;
+    gap: 3rem;
 }
 
-/* each link is a pill with an icon and a label */
+/* plain icon links for now: no border or background, styling comes later */
 .footer-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;                     /* space between icon and label */
-    padding: 0.6rem 1.2rem;
-    border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent);  /* faint outline */
-    border-radius: 999px;            /* fully rounded ends */
-    font-size: var(--text-xs);
-    transition: background 0.2s, color 0.2s;
-}
-
-/* hover: the pill fills in and the colours swap */
-.footer-links a:hover,
-.footer-links a:focus-visible {
-    background: var(--bg);
-    color: var(--text);
+    display: flex;
+    padding: 13px;
 }
 
 .footer-links .icon {
-    margin-right: 0;                 /* the gap above already spaces it */
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0;
 }
 
 .footer-icon {
-    width: 1em;
-    height: 1em;
+    width: 2rem;
+    height: 2rem;
 }
 
-/* the big name: huge, faint and cropped by the footer's bottom edge */
+/* hover styling / spinning */
+.footer-links .icon,
+.footer-icon {
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);   /* the 1.56 being > 1 makes the coin effect go beyond the 180º a bit and bounce back */
+}
+
+.footer-links a:hover .icon,
+.footer-links a:hover .footer-icon,
+.footer-links a:focus-visible .icon,
+.footer-links a:focus-visible .footer-icon {
+    transform: perspective(300px) rotateY(180deg) scale(1.15);
+}
+
+
+/* the big name: wide, dim and cropped by the footer's bottom edge */
 .footer-name {
-    margin-top: 3rem;
-    font-size: clamp(6rem, 26vw, 24rem);   /* scales with the screen, with a cap */
-    font-weight: 700;
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-size: 27cqw;   /* no container here, so this is 1% of the screen width, like vw */    
+    font-weight: 800;
     line-height: 0.75;
-    letter-spacing: -0.02em;
     text-align: center;
-    color: color-mix(in srgb, var(--bg) 12%, transparent);  /* a slightly lighter shade of the footer colour */
-    transform: translateY(15%);      /* pushes the bottom of the letters below the edge, so they get cropped */
-    user-select: none;               /* can't be selected, it's decoration */
+    color: color-mix(in srgb, var(--text) 82%, black); /* letters a bit darker than the footer, so they look pressed in */
+    text-shadow:
+        0 -0.008em 0 rgba(0, 0, 0, 0.55),  /* dark edge on top. the rim casts into the letter */
+        0 0.01em 0 color-mix(in srgb, var(--bg) 5%, transparent);  /* light edge underneath catching the lower lip */
+    transform: translateY(18%);
+    user-select: none;
+    pointer-events: none;  /* this fixes the icons not working when hovered. bit name covers the bottom of the button */
 }
 
 
@@ -712,6 +750,14 @@ img {
   }
   :root[data-theme="dark"] .about-photo.is-visible {
     animation: none;
+  }
+
+    /* footer icons: no spin */
+  .footer-links a:hover .icon,
+  .footer-links a:hover .footer-icon,
+  .footer-links a:focus-visible .icon,
+  .footer-links a:focus-visible .footer-icon {
+    transform: none;
   }
 }
 
