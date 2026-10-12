@@ -13,16 +13,15 @@ toggle.addEventListener("click", () => {
 });
 
 
-// Add "is-scrolled" to the island once the hero has mostly left the screen
+// Add "is-scrolled" to the island and arrow once a mouse scroll happens
 const hero = document.querySelector(".hero");
 
 const heroObserver = new IntersectionObserver(
   (entries) => {
-    // isIntersecting is true while enough of the hero is still visible.
-    // classList.toggle with a second argument forces the class on (true) or off (false).
+    // isIntersecting is true while no scroll happens.
     island.classList.toggle("is-scrolled", !entries[0].isIntersecting);
   },
-  { threshold: 1 }   // fires when the hero crosses the 50% visible mark; change to taste
+  { threshold: 1 }   // fires when the scroll happens
 );
 
 heroObserver.observe(hero);

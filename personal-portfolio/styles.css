@@ -172,6 +172,7 @@ img {
   align-items: center;   /* centred vertically */
   padding: 0 2rem;
   pointer-events: none;  /* the empty strip doesn't block clicks on the page below */
+  animation: fade-in 1s ease 2.5s both;
 }
 
 /* the island itself: one box that changes width */
@@ -331,7 +332,7 @@ img {
 
 .theme-toggle:hover,
 .theme-toggle:focus-visible {
-  border-color: currentColor;       /* the edge gets stronger when you point at it */
+  border-color: currentColor;
 }
 
 /* the two words, one in each half of the track */
@@ -387,6 +388,7 @@ img {
   display: flex;
   flex-direction: column;   /* title, subtitle, then bottom row, top to bottom */
   padding: 6rem 2rem 2rem;   /* big top padding so the fixed nav doesn't cover the text */
+  animation: fade-up 0.9s cubic-bezier(0.32, 1.5, 0, 1) 0.6s both;   /* name | duration | curve | delay | fill */
 }
 
 .hero-intro {
@@ -405,6 +407,8 @@ img {
   font-weight: 400;
   line-height: 2;
   font-style: italic;
+  animation: fade-up 3s cubic-bezier(0.32, 0.72, 0, 1) 1.5s both;   /* starts 0.3s after the title */
+
 }
 
 .brush {
@@ -418,6 +422,7 @@ img {
   align-items: center;
   font-size: var(--text-xs);
   text-transform: uppercase;
+  animation: fade-in 2s ease 2.5s both;
 }
 
 .hero-location {
@@ -426,6 +431,15 @@ img {
 
 .scroll-arrow {
   font-size: var(--text-sm);
+  transition: opacity 0.4s, transform 0.4s, visibility 0s;   /* back to visible */
+}
+
+/* when the island has "is-scrolled" (scrolled has happened), the arrow fades down and out */
+body:has(.island.is-scrolled) .scroll-arrow {
+  opacity: 0;
+  transform: translateY(80px);
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s, visibility 0s 0.4s;   /* visibility waits for the fade to finish */
 }
 
 
@@ -782,12 +796,24 @@ img {
 
 /*  ANIMATIONS  */
 
-/* moving the track left by 50% */
+/* PAGE LOAD fades in while rising a little */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* PAGE LOAD fades in without moving */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* moving the stack track left by 50% */
 @keyframes stack-scroll {
   to { transform: translateX(-50%); }
 }
 
-/* the flicker: each step is an instant jump */
+/* the bulb flicker on the about me image: each step is an instant jump */
 @keyframes bulb-on {
   0%   { opacity: 1; }   /* switch flicks on */
   30%  { opacity: 0.12; } /* flickers off */
@@ -806,6 +832,24 @@ img {
 /* turns smooth scrolling and other animations off for people who ask their system for less motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+
+  /* page load: everything is simply there, no fade */
+  .hero,
+  .hero-sub,
+  .hero-details,
+  .site-header {
+    animation: none;
+  }
+
+  /* arrow: hides instantly */
+  .scroll-arrow {
+    transition: none;
+  }
+
+    /* theme switch: the slider jumps instead of sliding */
+  .theme-thumb {
+    transition: none;
+  }
   
   /* stops stack bar motion */
   .stack-track {
@@ -818,7 +862,7 @@ img {
     display: none;
   }
 
-  /* dark theme: skip the flicker, the light is just on */
+  /* dark theme: skip the about me image flicker effect, the light is just on */
   :root[data-theme="dark"] .about-photo {
     opacity: 1;
   }
@@ -832,11 +876,6 @@ img {
   .footer-links a:focus-visible .icon,
   .footer-links a:focus-visible .footer-icon {
     transform: none;
-  }
-
-  /* theme switch: the slider jumps instead of sliding */
-  .theme-thumb {
-    transition: none;
   }
 }
 
