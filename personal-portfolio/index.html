@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
     <!-- === NAVIGATION: 2 links | menu button | 1 link + 1 button === -->
     <header class="site-header">
         <nav class="island" aria-label="Main">
@@ -58,15 +57,18 @@
                 <p class="hero-sub">On a journey into <span class="brush">web development</span>.</p>
             </div>
 
-            <!-- bottom row div: clock (left), arrow (centre), location (right) -->
+            <!-- bottom row: place + its date and time (left), arrow (centre), edition mark (right) -->
             <div class="hero-details">
                 <p class="hero-clock">
-                    <span id="clock-date">07 OUT 2026</span>
-                    <span id="clock-hours">12</span><span class="clock-colon">:</span><span id="clock-minutes">34</span>
+                    <span class="hero-place">Portugal</span>
+                    <!-- placeholders: script.js overwrites these with the real Portugal time -->
+                    <span class="hero-time">
+                        <span id="clock-date">12 OCT 2026</span> - 
+                        <span id="clock-hours">11</span><span class="clock-colon">:</span><span id="clock-minutes">43</span>
+                    </span>
                 </p>
-                <!-- ↓ is a placeholder ??  -->
                 <a class="scroll-arrow" href="#about" aria-label="Scroll down">↓</a>
-                <p class="hero-location">Based in Portugal</p>
+                <p class="hero-edition">Portfolio 2026</p>
             </div>
         </section>
         
@@ -75,7 +77,7 @@
         <section class="about" id="about">
 
             <!-- Title and text -->
-            <h2>About me</h2>
+            <h2><span class="brush brush-title">About me</span></h2>
             <div class="about-text">
                 <p>I'm a web developer based in Portugal.</p>
                 <p>I like understanding how things work, figuring out how to make them better, and paying attention to the details that are easy to overlook.</p>
@@ -135,7 +137,7 @@
 
         <!--=== PROJECTS SECTION ===-->
         <section class="projects" id="projects">
-            <h2>Projects</h2>
+            <h2><span class="brush brush-title">Projects</span></h2>
             <div class="project-list">
 
                 <a class="project-card" href="https://lumuscandles.netlify.app" target="_blank">

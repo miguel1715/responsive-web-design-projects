@@ -13,6 +13,10 @@ toggle.addEventListener("click", () => {
 });
 
 
+/*  --------------------------------  */
+
+
+
 // Add "is-scrolled" to the island and arrow once a mouse scroll happens
 const hero = document.querySelector(".hero");
 
@@ -27,6 +31,9 @@ const heroObserver = new IntersectionObserver(
 heroObserver.observe(hero);
 
 
+/*  --------------------------------  */
+
+
 // Close the island when a link inside it is clicked, or when Escape is pressed
 function closeIsland() {
   island.classList.remove("is-open");
@@ -38,6 +45,33 @@ function closeIsland() {
 island.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", closeIsland);
 });
+
+
+/*  --------------------------------  */
+
+
+// HERO CLOCK: the date and time in Portugal, whatever timezone the visitor is in
+const clockDate = document.getElementById("clock-date");
+const clockHours = document.getElementById("clock-hours");
+const clockMinutes = document.getElementById("clock-minutes");
+
+// two formatters, created once: timeZone makes them use Portugal's time for everyone
+const dateFormat = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", day: "2-digit", month: "short", year: "numeric" });
+const timeFormat = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+
+function updateClock() {
+  const now = new Date();     // the current moment
+  const [hours, minutes] = timeFormat.format(now).split(":");  // "16:55" becomes ["16", "55"]
+  clockDate.textContent = dateFormat.format(now);    // "13 Oct 2026" (CSS makes it uppercase)
+  clockHours.textContent = hours;
+  clockMinutes.textContent = minutes;
+}
+
+updateClock();  // fill it in right away, don't wait for the first tick
+setInterval(updateClock, 1000);   // then refresh every second so the minute changes on time
+
+
+/*  --------------------------------  */
 
 
 // ABOUT PHOTO: fades in / lights up once, when it scrolls into view
@@ -54,6 +88,9 @@ const photoObserver = new IntersectionObserver(
 );
 
 photoObserver.observe(aboutPhoto);
+
+
+/*  --------------------------------  */
 
 
 // THEME TOGGLE: the bulb button flips data-theme on <html>
@@ -75,4 +112,27 @@ themeButton.addEventListener("click", () => {
     photo.classList.remove("is-visible");   // reset, so the flicker animation can start over
     photoObserver.observe(photo);           // watch it again: if it's on screen, the observer adds is-visible
   }
+});
+
+
+
+
+
+
+
+
+// BRUSH STROKES: when a title scrolls into view, draw its brush once and keep it
+const brushTitles = document.querySelectorAll(".brush-title");
+
+const brushObserver = new IntersectionObserver(function (entries, observer) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-drawn");   // the CSS does the drawing
+      observer.unobserve(entry.target);         // job done: stop watching, so it never undraws
+    }
+  });
+}, { threshold: 0.9, rootMargin: "0px 0px -55% 0px" });   // 90% of the title visible, and it must be a bit above the bottom edge of the screen
+
+brushTitles.forEach(function (title) {
+  brushObserver.observe(title);
 });
