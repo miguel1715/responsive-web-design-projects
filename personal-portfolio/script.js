@@ -31,7 +31,34 @@ const heroObserver = new IntersectionObserver(
 heroObserver.observe(hero);
 
 
+
 /*  --------------------------------  */
+
+
+
+// HIDE ON SCROLL DOWN: the closed island fades out going down and fades back in going up
+const navIsland = document.querySelector(".island");
+let lastScrollY = window.scrollY;   // where the page was at the last scroll event
+
+window.addEventListener("scroll", function () {
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY > lastScrollY && !navIsland.classList.contains("is-open")) {
+    navIsland.classList.add("is-hidden");   // scrolling down, past the top, menu closed: hide
+  } else if (currentScrollY < lastScrollY) {
+    navIsland.classList.remove("is-hidden");   // scrolling up: show again
+    navIsland.classList.toggle("is-compact", currentScrollY > 0);   // black and small, unless we're back at the very top
+
+  }
+
+  lastScrollY = currentScrollY;   // remember this position for the next scroll event
+});
+
+
+
+/*  --------------------------------  */
+
+
 
 
 // Close the island when a link inside it is clicked, or when Escape is pressed
@@ -71,7 +98,10 @@ updateClock();  // fill it in right away, don't wait for the first tick
 setInterval(updateClock, 1000);   // then refresh every second so the minute changes on time
 
 
+
 /*  --------------------------------  */
+
+
 
 
 // ABOUT PHOTO: fades in / lights up once, when it scrolls into view
@@ -90,7 +120,9 @@ const photoObserver = new IntersectionObserver(
 photoObserver.observe(aboutPhoto);
 
 
+
 /*  --------------------------------  */
+
 
 
 // THEME TOGGLE: the bulb button flips data-theme on <html>
@@ -116,8 +148,7 @@ themeButton.addEventListener("click", () => {
 
 
 
-
-
+/*  --------------------------------  */
 
 
 

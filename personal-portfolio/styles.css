@@ -8,7 +8,10 @@
     --bg-subtle: #F7EBD5;
     --grain-image: url(images/grain-light.png);
 
-    --font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-main: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; /* all body text + hero subtitle */
+    --font-heading: "Syne", "Space Grotesk", sans-serif; /* nav links, h2, h3 */
+    --font-title: "DM Serif Display", Georgia, serif; /* big hero title */
+    --font-sub: "Space Grotesk", sans-serif; /* hero subtitle (browser-slanted italic) */
     --font-screen: "VT323", "Courier New", monospace;
     --font-hand: "Italianno", "Apple Chancery", cursive;
     --font-display: "Unbounded", "Arial Black", sans-serif;   /* the big footer name */
@@ -125,14 +128,15 @@
   }
 
   h2 {
+    font-family: var(--font-heading);
     font-size: var(--text-md);
     font-weight: 700;
     line-height: 1.1;
   }
 
   h3 {
-    font-size: var(--text-sm);
-    font-weight: 600;
+    font-family: var(--font-heading);
+    font-weight: 700;
   }
 
   a {
@@ -183,7 +187,8 @@
     transition: width 0.6s cubic-bezier(0.32, 0.72, 0, 1),  /* Apple-like curve */
                 height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
                 border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
-                color 0.35s
+                color 0.35s,
+                opacity 0.4s ease;   /* the fade when the island hides and comes back */
   }
 
   /* THE BLACK LAYER: sits behind the stripes and links, covers the whole island */
@@ -219,19 +224,26 @@
     clip-path: circle(150% at 50% 50%); /* much bigger, so the long bar is fully #black */
   }
 
-  /* SCROLLED + closed: */
-  .island.is-scrolled:not(.is-open) {
+  /* COMPACT + closed: black and small, only after scrolling up */
+  .island.is-compact:not(.is-open) {
     --island-size: 48px;
     color: var(--bg);
   }
 
-  .island.is-scrolled:not(.is-open)::before {
+  .island.is-compact:not(.is-open)::before {
     clip-path: circle(75% at 50% 50%);
   }
 
   /* hovering it brings back the full-size version */
-  .island.is-scrolled:not(.is-open):hover {
+  .island.is-compact:not(.is-open):hover {
     --island-size: var(--island-hover-size);
+  }
+
+
+  /* HIDDEN: JavaScript adds "is-hidden" while scrolling down with the menu closed */
+  .island.is-hidden {
+    opacity: 0;
+    pointer-events: none;  /* an invisible island can't be clicked or hovered */
   }
 
 
@@ -286,6 +298,8 @@
   .nav-links a {
     position: relative;
     padding-block: 0.25rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
   }
 
   .nav-links a::after {
@@ -390,13 +404,18 @@
     text-align: center;
   }
 
+  .hero-title {
+    font-family: var(--font-title);
+    font-weight: 400;
+  }
+
   .dot {
     color: var(--accent);
   }
 
   .hero-sub {
-    margin-top: 1.5rem;
-    font-size: var(--text-sm);
+    margin-top: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 2;
     font-style: italic;
@@ -700,7 +719,9 @@
     display: inline-block;    /* title line box is only as wide as the title */
     margin-top: 1.25rem;
     margin-bottom: 0.1rem;
-    padding-bottom: 0.15rem;     /* room below the letters, so the letters g and j never touch the underline */
+    padding-bottom: 0.15rem;
+    line-height: 1.1;
+
   }
 
   /* the #orange line: hidden at rest, same behaviour as the nav links */
@@ -959,6 +980,11 @@
 
   @media (max-width: 1145px) {
 
+    /* hero sub */
+    .hero-sub {
+      font-size: 1.2rem;
+    }
+
     /* about */
     .about {
       grid-template-columns: 1fr;
@@ -1010,6 +1036,11 @@
 
   /* PHONE AND SMALL TABLET */
   @media (max-width: 800px) {
+
+    /* hero sub */
+    .hero-sub {
+      font-size: 1rem;
+    }
 
     /* nav */
     .site-header {
@@ -1086,6 +1117,11 @@
 
   @media (max-width: 600px) {
 
+    /* hero sub */
+    .hero-sub {
+      font-size: 0.9rem;
+    }
+
     /* about */
     .about {
       padding: 4rem 5rem 5rem;
@@ -1157,6 +1193,15 @@
       font-size: 0.9rem;
     }
 
+    .nav-links {
+       font-size: 0.8rem;
+    }
+
+    /* hero sub */
+    .hero-sub {
+      font-size: 0.8rem;
+    }    
+
     /* about */
     .about {
       padding: 4rem 3rem 5rem;
@@ -1189,7 +1234,11 @@
       --island-hover-size: 54px;
       padding: 0 0.5rem;
     }
-
+    
+    .nav-links {
+       font-size: 0.75rem;
+    }
+    
     .theme-toggle {
       width: 4.2rem;
       padding: 0;
@@ -1199,10 +1248,10 @@
       font-size: 0.7rem;
     }
   
-    /* hero */
+    /* hero sub */
     .hero-sub {
-      font-size: 1rem;
-    }
+      font-size: 0.7rem;
+    } 
 
     /* stack */
     .stack-track {
