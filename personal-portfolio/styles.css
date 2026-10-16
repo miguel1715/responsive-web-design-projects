@@ -204,15 +204,13 @@
     transition: transform 0.5s ease;
   }
 
-  /* HOVER while closed: the circle grows until the square is full */
-  .island:not(.is-open):hover,
+  /* KEYBOARD FOCUS while closed: the text colour flips (the circle grows below) */
   .island:not(.is-open):has(.menu-toggle:focus-visible) {
     color: var(--bg);
     --island-size: var(--island-hover-size);     /* grows by size, not by scale, so the stripes stay the same */
   }
 
-  /* the circle grows until it fills the square on hover */
-  .island:not(.is-open):hover::before,
+  /* the circle grows until it fills the square: on keyboard focus, and in the compact state */
   .island:not(.is-open):has(.menu-toggle:focus-visible)::before,
   .island.is-compact:not(.is-open)::before {
     transform: translate(-50%, -50%) scale(1);
@@ -237,12 +235,6 @@
     --island-size: 48px;
     color: var(--bg);
   }
-
-  /* hovering it brings back the full-size version */
-  .island.is-compact:not(.is-open):hover {
-    --island-size: var(--island-hover-size);
-  }
-
 
   /* HIDDEN: JavaScript adds "is-hidden" while scrolling down with the menu closed */
   .island.is-hidden {
@@ -1297,6 +1289,19 @@
 
   /* these animations only work on devices using a mouse */
   @media (hover: hover) and (pointer: fine) {
+    .island:not(.is-open):hover {
+      color: var(--bg);
+      --island-size: var(--island-hover-size);
+    }
+
+    .island:not(.is-open):hover::before {
+      transform: translate(-50%, -50%) scale(1);   /* the circle grows until it fills the square */
+    }
+
+    .island.is-compact:not(.is-open):hover {
+      --island-size: var(--island-hover-size);     /* hovering the compact one brings back the full size */
+    }
+
     .project-card img {
       filter: grayscale(1) opacity(70%);
       transition: filter 0.4s, transform 0.4s;
@@ -1307,7 +1312,7 @@
       filter: grayscale(0) opacity(100%);
       transform: scale(1.02);
     }
-  }
+  }    
 
   /* underline always on on touchscreen devices */
   @media (hover: none) {
