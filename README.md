@@ -24,7 +24,7 @@ it'll keep getting updated as I learn more.
 
 ## Tech Used
 
-HTML and CSS. No frameworks or libraries.
+HTML and CSS. No frameworks or libraries. Side note: this tech list will grow as I progress through the courses. JavaScript is already starting to show up in the portfolio website project, and whatever comes next, from frameworks to back end, will be added when I actually learn it.
 
 ## What I Learned
 
