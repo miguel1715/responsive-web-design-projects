@@ -172,31 +172,36 @@
 
   /* the island itself: one box that changes width */
   .island {
-    position: relative;   /* lets the #black ::before layer sit inside the island */
+    position: relative;
     pointer-events: auto;
     display: flex;
     align-items: center;
     width: var(--island-size); /* CLOSED: a square, same size as the button */
     height: var(--island-size);
-    background: transparent;     /* ::before layer adds the background */
+    background: transparent;
     color: var(--text);
     border-radius: 25%;
-    overflow: hidden; /* hides the links while narrow, and rounds off the #black layer's corners */
+    overflow: hidden; /* hides the links while narrow, and rounds off the circle's corners */
     transition: width 0.6s cubic-bezier(0.32, 0.72, 0, 1),  /* Apple-like curve */
                 height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
                 border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
                 color 0.35s,
-                opacity 0.4s ease;   /* the fade when the island hides and comes back */
+                opacity 0.4s ease,   /* the fade when the island hides and comes back */
+                background-color 0.25s ease 0.6s;   /* closing: the black bar waits until it has shrunk, then fades */
   }
 
-  /* THE BLACK LAYER: sits behind the stripes and links, covers the whole island */
+  /* THE HOVER CIRCLE: a round element behind the stripes and links, bigger than the square so it covers the corners */
   .island::before {
     content: "";
     position: absolute;
-    inset: 0;   /* fills the island, and follows it as it stretches */
+    top: 50%;
+    left: 50%;
+    width: calc(var(--island-size) * 1.5);    /* 1.5x the square: covers it corner to corner */
+    height: calc(var(--island-size) * 1.5);
+    border-radius: 50%;
     background: var(--text);
-    clip-path: circle(0% at 50% 50%); /* HIDDEN: a circle of size 0 in the exact centre */
-    transition: clip-path 0.50s ease;
+    transform: translate(-50%, -50%) scale(0);  /* HIDDEN: centred, shrunk to nothing */
+    transition: transform 0.5s ease;
   }
 
   /* HOVER while closed: the circle grows until the square is full */
@@ -206,9 +211,11 @@
     --island-size: var(--island-hover-size);     /* grows by size, not by scale, so the stripes stay the same */
   }
 
+  /* the circle grows until it fills the square on hover */
   .island:not(.is-open):hover::before,
-  .island:not(.is-open):has(.menu-toggle:focus-visible)::before {
-    clip-path: circle(75% at 50% 50%);
+  .island:not(.is-open):has(.menu-toggle:focus-visible)::before,
+  .island.is-compact:not(.is-open)::before {
+    transform: translate(-50%, -50%) scale(1);
   }
 
   /* JavaScript adds the class "is-open" */
@@ -216,20 +223,19 @@
     width: 100%;
     border-radius: 40px;
     color: var(--bg);
-  }
-
-  .island.is-open::before {
-    clip-path: circle(150% at 50% 50%); /* much bigger, so the long bar is fully #black */
+    background-color: var(--text);   /* the open bar is black: the island itself, no circle needed */
+    transition: width 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+                height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+                border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+                color 0.35s,
+                opacity 0.4s ease,
+                background-color 0s;   /* opening: black at once, with no wait */
   }
 
   /* COMPACT + closed: black and small, only after scrolling up */
   .island.is-compact:not(.is-open) {
     --island-size: 48px;
     color: var(--bg);
-  }
-
-  .island.is-compact:not(.is-open)::before {
-    clip-path: circle(75% at 50% 50%);
   }
 
   /* hovering it brings back the full-size version */
@@ -260,6 +266,7 @@
     border: none;
     color: inherit;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;   /* no #blue highlight on mobiel tap */
   }
 
   .menu-toggle span {
@@ -1115,7 +1122,6 @@
     .statement-text {
       font-size: clamp(1.2rem, 8vw, 2rem); /* min, 8% of the screen width, max */
       opacity: 1;
-      filter: none;
       -webkit-text-stroke: 0.2px currentColor; /* thickens the strokes a little */    
     }
     .statement-source {
