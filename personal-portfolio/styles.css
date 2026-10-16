@@ -11,7 +11,6 @@
     --font-main: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; /* all body text + hero subtitle */
     --font-heading: "Syne", "Space Grotesk", sans-serif; /* nav links, h2, h3 */
     --font-title: "DM Serif Display", Georgia, serif; /* big hero title */
-    --font-sub: "Space Grotesk", sans-serif; /* hero subtitle (browser-slanted italic) */
     --font-screen: "VT323", "Courier New", monospace;
     --font-hand: "Italianno", "Apple Chancery", cursive;
     --font-display: "Unbounded", "Arial Black", sans-serif;   /* the big footer name */
@@ -23,8 +22,7 @@
     --text-xs: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
     --text-sm: clamp(1.25rem, 1rem + 0.8vw, 1.875rem);
     --text-md: clamp(2.25rem, 1.2rem + 3.6vw, 4rem);
-    --text-lg: clamp(3.5rem, 1.5rem + 6vw, 6.5rem);
-    --text-xl: clamp(4rem, 1rem + 11vw, 10.625rem);
+    --text-lg: clamp(4rem, 3.2rem + 10.4vw, 10.625rem);
   }
 
   /*  DARK THEME  */
@@ -122,7 +120,7 @@
   }
 
   h1 {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     font-weight: 700;
     line-height: 1;
   }
@@ -415,7 +413,8 @@
 
   .hero-sub {
     margin-top: 1.8rem;
-    font-size: 1.5rem;
+    font-size: clamp(0.95rem, 4.1vw, 1.5rem);
+    white-space: nowrap;
     font-weight: 400;
     line-height: 2;
     font-style: italic;
@@ -436,8 +435,7 @@
   }
 
   .hero-clock {
-    display: flex;
-    flex-direction: column;  /* "Portugal" on top, date and time under it */
+    white-space: nowrap;
   }
 
   .hero-edition {
@@ -980,23 +978,10 @@
 
   @media (max-width: 1145px) {
 
-    /* hero sub */
-    .hero-sub {
-      font-size: 1.2rem;
-    }
-
     /* about */
     .about {
-      grid-template-columns: 1fr;
       min-height: auto;
-      max-width: 48rem;
-      padding: 7rem 6rem 7rem;
-    }
-    .about-photo {
-      grid-column: 1;
-      grid-row: auto;
-      justify-self: center;
-      width: min(100%, 22rem);
+      padding: 7rem 4.5rem 11rem;
     }
 
     /* quote */
@@ -1037,11 +1022,6 @@
   /* PHONE AND SMALL TABLET */
   @media (max-width: 800px) {
 
-    /* hero sub */
-    .hero-sub {
-      font-size: 1rem;
-    }
-
     /* nav */
     .site-header {
       padding: 0 1rem;
@@ -1061,15 +1041,12 @@
       font-size: 1rem;
       letter-spacing: 0.05em;
     }
-    .hero-time {
-      white-space: nowrap;  /* date and time never break into two lines */
-    }
 
     /* about */
     .about {
       grid-template-columns: 1fr;
       min-height: auto;
-      padding: 5rem 6rem 6rem;
+      padding: 8rem 6rem 9rem;
     }
     .about-photo {
       grid-column: 1;
@@ -1091,7 +1068,7 @@
       padding: 0 6rem 5rem;
     }
     .projects h2 {
-      margin-bottom: 3rem;
+      margin-bottom: 5rem;
     }
     .project-list {
       grid-template-columns: 1fr;
@@ -1117,14 +1094,9 @@
 
   @media (max-width: 600px) {
 
-    /* hero sub */
-    .hero-sub {
-      font-size: 0.9rem;
-    }
-
     /* about */
     .about {
-      padding: 4rem 5rem 5rem;
+      padding: 7rem 5rem 10rem;
     }
     .about-photo {
       width: min(100%, 16rem);
@@ -1140,10 +1112,13 @@
 
     /* quote */
     .statement {
-      padding: 7rem 3rem;
+      padding: 10rem 3rem;
     }
     .statement-text {
       font-size: clamp(1.2rem, 8vw, 2rem); /* min, 8% of the screen width, max */
+      opacity: 1;
+      filter: none;
+      -webkit-text-stroke: 0.2px currentColor; /* thickens the strokes a little */    
     }
     .statement-source {
       font-size: clamp(0.7rem, 8vw, 0.9rem);
@@ -1158,13 +1133,14 @@
     .projects h2 {
       margin-bottom: 5rem;
     }
+
     .project-list {
       gap: 2.5rem;
     }
 
     /* footer */
     .footer-top {
-      padding: 0 1.7rem;
+      padding: 0.6rem 1.7rem;
     }
     .footer-links {
       gap: 1rem;
@@ -1197,14 +1173,19 @@
        font-size: 0.8rem;
     }
 
-    /* hero sub */
-    .hero-sub {
-      font-size: 0.8rem;
-    }    
+    /* Projects moves a bit to the right, closer to the center button */
+    .nav-links-left li:last-child a {
+      left: 0.90rem;
+    }
+
+    /* Contact moves a bit to the left, closer to the center button */
+    .nav-links-right li:first-child a {
+      left: -0.2rem;
+    }  
 
     /* about */
     .about {
-      padding: 4rem 3rem 5rem;
+      padding: 7rem 3rem 10rem;
     }
 
     /* stack */
@@ -1220,6 +1201,35 @@
     /* projects */
     .projects {
       padding: 0 2rem 4rem;
+    }
+
+    /* footer */
+
+    .site-footer {
+      padding-top: 1.9rem;
+    }
+
+    .footer-top {
+      padding: 1rem;
+    }
+
+    .footer-links {
+      gap: 0.5rem;
+    }
+    .footer-links a {
+      padding: 10px;
+    }
+    .footer-links .icon,
+    .footer-icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+    .footer-copy {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    .footer-name {
+      transform: translateY(8%);
     }
   }
 
@@ -1247,11 +1257,6 @@
     .theme-labels {
       font-size: 0.7rem;
     }
-  
-    /* hero sub */
-    .hero-sub {
-      font-size: 0.7rem;
-    } 
 
     /* stack */
     .stack-track {
@@ -1297,5 +1302,12 @@
     .project-card:focus-visible img {
       filter: grayscale(0) opacity(100%);
       transform: scale(1.02);
+    }
+  }
+
+  /* underline always on on touchscreen devices */
+  @media (hover: none) {
+    .project-card h3::after {
+      transform: scaleX(1);    /* underline at full width, no animation */
     }
   }

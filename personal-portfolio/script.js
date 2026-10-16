@@ -37,17 +37,16 @@ heroObserver.observe(hero);
 
 
 // HIDE ON SCROLL DOWN: the closed island fades out going down and fades back in going up
-const navIsland = document.querySelector(".island");
 let lastScrollY = window.scrollY;   // where the page was at the last scroll event
 
 window.addEventListener("scroll", function () {
   const currentScrollY = window.scrollY;
 
-  if (currentScrollY > lastScrollY && !navIsland.classList.contains("is-open")) {
-    navIsland.classList.add("is-hidden");   // scrolling down, past the top, menu closed: hide
+  if (currentScrollY > lastScrollY && !island.classList.contains("is-open")) {
+    island.classList.add("is-hidden");   // scrolling down, past the top, menu closed: hide
   } else if (currentScrollY < lastScrollY) {
-    navIsland.classList.remove("is-hidden");   // scrolling up: show again
-    navIsland.classList.toggle("is-compact", currentScrollY > 0);   // black and small, unless we're back at the very top
+    island.classList.remove("is-hidden");   // scrolling up: show again
+    island.classList.toggle("is-compact", currentScrollY > 0);   // black and small, unless we're back at the very top
 
   }
 
@@ -61,7 +60,7 @@ window.addEventListener("scroll", function () {
 
 
 
-// Close the island when a link inside it is clicked, or when Escape is pressed
+// Close the island when a link inside it is clicked
 function closeIsland() {
   island.classList.remove("is-open");
   toggle.setAttribute("aria-expanded", "false");
@@ -77,25 +76,23 @@ island.querySelectorAll(".nav-links a").forEach((link) => {
 /*  --------------------------------  */
 
 
-// HERO CLOCK: the date and time in Portugal, whatever timezone the visitor is in
-const clockDate = document.getElementById("clock-date");
+
+// HERO CLOCK
 const clockHours = document.getElementById("clock-hours");
 const clockMinutes = document.getElementById("clock-minutes");
 
-// two formatters, created once: timeZone makes them use Portugal's time for everyone
-const dateFormat = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", day: "2-digit", month: "short", year: "numeric" });
+// Portugal time clock
 const timeFormat = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 
 function updateClock() {
-  const now = new Date();     // the current moment
-  const [hours, minutes] = timeFormat.format(now).split(":");  // "16:55" becomes ["16", "55"]
-  clockDate.textContent = dateFormat.format(now);    // "13 Oct 2026" (CSS makes it uppercase)
+  const now = new Date();   // the current moment
+  const [hours, minutes] = timeFormat.format(now).split(":");
   clockHours.textContent = hours;
   clockMinutes.textContent = minutes;
 }
 
 updateClock();  // fill it in right away, don't wait for the first tick
-setInterval(updateClock, 1000);   // then refresh every second so the minute changes on time
+setInterval(updateClock, 1000);  // refresh every second so the minute changes on time
 
 
 
@@ -140,9 +137,8 @@ themeButton.addEventListener("click", () => {
   themeButton.setAttribute("aria-label", goingDark ? "Switch to light theme" : "Switch to dark theme");
 
   if (goingDark) {
-    const photo = document.querySelector(".about-photo");
-    photo.classList.remove("is-visible");   // reset, so the flicker animation can start over
-    photoObserver.observe(photo);           // watch it again: if it's on screen, the observer adds is-visible
+    aboutPhoto.classList.remove("is-visible"); // reset, so the flicker animation can start over
+    photoObserver.observe(aboutPhoto); // watch it again: if it's on screen, the observer adds is-visible
   }
 });
 
