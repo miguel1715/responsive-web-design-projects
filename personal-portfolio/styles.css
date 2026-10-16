@@ -419,7 +419,6 @@
     line-height: 2;
     font-style: italic;
     animation: fade-up 3s cubic-bezier(0.32, 0.72, 0, 1) 1.5s both;
-    text-wrap: balance;
   }
 
   .hero-details {
@@ -540,8 +539,8 @@
     /* image blend and sketch like effect */
     mix-blend-mode: multiply;
 
-    -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 60%, transparent 100%);
-    mask-image: radial-gradient(ellipse closest-side at center, #000 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at center, #000 60%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 50% at center, #000 60%, transparent 100%);
 
     filter: blur(40px) opacity(0);    /* hidden state: blurry and invisible */
     transition: filter 2s ease;     /* it takes 2 seconds to sharpen and appear */
@@ -667,7 +666,6 @@
     line-height: 1.4;
     letter-spacing: 0.04em;
     opacity: 0.8;
-    filter: blur(0.4px);
   }
 
 
