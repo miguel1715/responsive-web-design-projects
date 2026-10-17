@@ -180,6 +180,7 @@ section.gallery-section {
     scroll-snap-align: center;
     border-radius: 10px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 section.songs-section {
@@ -299,6 +300,13 @@ section.songs-section {
 
   hr {
     max-width: 275px;
+    margin-bottom: 3rem;
+  }
+
+  .bio-section h2,
+  .gallery-section h2,
+  .songs-section h2 {
+    margin: 5rem 0 1rem;   /* same selectors as the desktop rules, so this one wins inside the mobile block */
   }
 
   .biodiv {
@@ -307,7 +315,7 @@ section.songs-section {
   }
 
   .galdiv {
-    width: 160vw;
+    width: 90vw;
     gap: 32px;
   }
 
@@ -327,7 +335,7 @@ section.songs-section {
   }
 
   .hero-text h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .hero-text p {
